@@ -1,0 +1,183 @@
+I want to create a blog for my friend to use, his name is Frankie. I want this to be done agentically. So, write a series of CODEX prompts for it to begin working on a GitHub repo to create this blog and get it up and running. Write these prompts such that I can get multiple CODEX agent's working on the project at once. Here is the frontend code for the design template: <html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Newsreader%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#111b22] dark group/design-root overflow-x-hidden" style='font-family: Newsreader, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#243947] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Francisco Rojas</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="#">About</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Blog</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Projects</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Contact</a>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#243947] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Subscribe</span>
+              </button>
+              <button
+                class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#243947] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+              >
+                <div class="text-white" data-icon="Sun" data-size="20px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBVArQJhb3ath5i6vViQTI_sxvrz0LifdRZP0aLIzO2lmweyvJb2gUull7j2eVFuCzlEd1AO5VeDsp3KRVOKyw8vQLDMUiLHs-KrB5NEh5TIxLDVLbkae3LQ2B9cHILv8e3h4SvFzW7LFbdgKbqmk3jpKnb28CgwL7krHj0vy6OOUd6paOHyzPnaHlAxRpQscUCjlUE9BmLPx0IgPAmDZ9AFobylB2LlpxvtVYonixVduoqS6f0itCRGaGoXzelh5nBX75F8GxqbzI");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmUznEDGFZRy4KTqBD0tPZ2-LpYDPezpYAFWQIt2AkPlfA-AkZ5K1qSwmaDgmhSFegj5UJo6prsrP7HRWEYjM79IgC1xibBqe6m6Y7HLkCEGAh-hk13Wh0O-yHZbU3_NrpNnL_x8HNybhZ_MqDbkENIPLbImRTkMuvZ9RN8piKoVCD1wDABjwF8_s78Gh3MORwEXSU5sK6ZLz5SQx0gE_ICmEcJANSoXxxuNtdx5OUnijN4LDHvhyOuRSIO2NlppmRGDVT9pCpPaY");'
+                >
+                  <div class="flex flex-col gap-2 text-left">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Welcome to My Blog
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      I'm Francisco Rojas, a passionate writer and tech enthusiast. Join me as I explore the latest trends, share insights, and discuss exciting developments in the
+                      world of technology.
+                    </h2>
+                  </div>
+                  <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#1993e5] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                  >
+                    <span class="truncate">Read My Latest Post</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest Posts</h2>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCrkT1dcx0bmSR08py3Y7SSJQPcV5lW9H2DuAEi_5c1l3p9zixNQb2m48eohPz4tWm_GBzpxHUQ83wEbdHD5wlUIfGOSeWY5EHmCnLuwJH2Gtx3D1gPTBMQN_qGEa1L0sj7P8WAACI6huNa9ZkItmj8M5fFLxnTmnjARHV9Q6QaMvpZf4B_DyIfJ_8J2VjEp6EmMwOETJrd2XtWhnW5XpdAgg0lpsYS1pReSVZbtUhP6jZLeDSl_rykg5NDxSMIgpHMQ6XJDXCOjBk");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">The Future of AI in Software Development</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#93b3c8] text-base font-normal leading-normal">
+                      Explore how artificial intelligence is transforming the software development landscape, from automating tasks to enhancing code quality.
+                    </p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1993e5] text-white text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgVN8d7Bx2oziUnjdtl56PZaooUc2zLsT5k6UwQsgbzSG7U9tRMGaYk8qnh2shmVwNEW2ezWgcgH5MvKqmap4Wd18BO8jpjPe4yQhrlS0FXO7VHZqgZbcas3JU4ywWxyytue87qMBsxJBtSxjO_LLez60UWh42aQQtCnU723DggqnbcuFBWSqLGlMgJB7lKNxOJm-K30FEbpmtK-hPNbuixRjD8NF_nDBzCYjoYnCRz5LebLjZGUAJYAnMEj22b3Lsrd8CBcSUX0M");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Mastering Modern Web Frameworks</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#93b3c8] text-base font-normal leading-normal">
+                      A comprehensive guide to the most popular web frameworks, including React, Angular, and Vue.js, with practical examples and best practices.
+                    </p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1993e5] text-white text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 @container">
+              <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlvR6lCuFiF9VaCsv0WorFPHQMugmlCAHzwa4BhxyGI8xSubKpJ5rxBv6f0-dE5MyHcYi4xpOGRVM1_RV9GDwi5cjeT0LUnWREk5gBZtZerZtyldhyGZeTXzJrman48lL_n11bCkygYHcRsm9H9v4xrfkRkY7omIE-121nzWH8MgjFXG-PZwnGGAt00xS7yqQkOiJjhjYZBuRoDbiafcFucs3CGOrChftmaaYH7xXnSK-8OiJK8gmDn8a395C8qz2uYoBPql0ysW8");'
+                ></div>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
+                  <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Effective Strategies for Remote Collaboration</p>
+                  <div class="flex items-end gap-3 justify-between">
+                    <p class="text-[#93b3c8] text-base font-normal leading-normal">
+                      Learn how to optimize your remote work setup, improve communication, and maintain productivity while working from home.
+                    </p>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1993e5] text-white text-sm font-medium leading-normal"
+                    >
+                      <span class="truncate">Read More</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="flex justify-center">
+          <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#93b3c8] text-base font-normal leading-normal min-w-40" href="#">Newsletter</a>
+              </div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a href="#">
+                  <div class="text-[#93b3c8]" data-icon="TwitterLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="text-[#93b3c8]" data-icon="LinkedinLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+              <p class="text-[#93b3c8] text-base font-normal leading-normal">© 2024 Francisco Rojas. All rights reserved.</p>
+            </footer>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
