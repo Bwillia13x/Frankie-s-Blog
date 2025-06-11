@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://Bwillia13x.github.io/Frankie-s-Blog/sitemap.xml 
