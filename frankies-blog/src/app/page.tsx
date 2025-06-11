@@ -22,6 +22,9 @@ export default function Home() {
               <a href="/projects" className="px-8 py-4 bg-[#1993e5] text-white font-semibold rounded-2xl hover:bg-accent-hover transition-all duration-300 hover:scale-105 transform inline-block">
                 View My Work
               </a>
+              <a href="/blog" className="px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block">
+                Read My Blog
+              </a>
               <a href="/contact" className="px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block">
                 Get In Touch
               </a>

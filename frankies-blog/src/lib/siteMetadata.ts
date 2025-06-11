@@ -5,6 +5,12 @@ export const siteMetadata = {
   nav: [
     { title: 'About', href: '/' },
     { title: 'Projects', href: '/projects' },
+    { title: 'Blog', href: '/blog' },
+    { title: 'Resources', href: '/resources' },
+    { title: 'Speaking', href: '/speaking' },
+    { title: 'Uses', href: '/uses' },
+    { title: 'Community', href: '/community' },
+    { title: 'Newsletter', href: '/newsletter' },
     { title: 'Contact', href: '/contact' },
   ],
   social: {
