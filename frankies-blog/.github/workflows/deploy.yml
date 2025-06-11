@@ -23,8 +23,10 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install
-      - run: pnpm build
-      - run: touch out/.nojekyll
+      - name: Build with Next.js
+        run: pnpm build
+      - name: Create .nojekyll file
+        run: touch ./out/.nojekyll
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
