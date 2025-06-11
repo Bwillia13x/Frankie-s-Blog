@@ -39,5 +39,8 @@ export async function getPostBySlug(slug: string) {
     source,
     options: { parseFrontmatter: true },
   });
-  return { source: content, frontMatter: frontmatter };
+  return { 
+    source: content, 
+    frontMatter: frontmatter as PostMeta 
+  };
 }

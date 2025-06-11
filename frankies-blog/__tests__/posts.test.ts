@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+// Using jest globals (describe, it, expect)
 import { getAllPostsMeta, getPostBySlug } from '../src/lib/posts';
 
 describe('posts helpers', () => {
