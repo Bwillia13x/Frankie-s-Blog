@@ -1,20 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter, Roboto_Mono } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { siteMetadata } from '@/lib/siteMetadata'
 import ErrorBoundary from '@/components/common/ErrorBoundary' // Import ErrorBoundary
-
-const inter = Inter({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const mono = Roboto_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -53,7 +42,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${mono.variable} antialiased bg-[#111b22] text-white min-h-screen`}>
+      <body className="font-sans antialiased bg-[#111b22] text-white min-h-screen">
         <div className="relative flex size-full min-h-screen flex-col bg-[#111b22] dark group/design-root overflow-x-hidden">
           <div className="layout-container flex h-full grow flex-col">
             <Header />

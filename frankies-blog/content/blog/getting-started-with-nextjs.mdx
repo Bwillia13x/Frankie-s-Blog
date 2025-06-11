@@ -1,0 +1,183 @@
+---
+title: 'Getting Started with Next.js 14: A Complete Guide'
+date: '2024-01-15'
+tags: ['nextjs', 'react', 'web-development', 'typescript']
+summary: 'Learn how to build modern web applications with Next.js 14, covering app router, server components, and best practices.'
+image: '/images/blog/nextjs-guide.jpg'
+author: 'Francisco Martinez'
+---
+
+# Getting Started with Next.js 14: A Complete Guide
+
+Next.js 14 brings exciting new features and improvements that make building modern web applications even more powerful and efficient. In this comprehensive guide, we'll explore the key features and learn how to get started.
+
+## What's New in Next.js 14
+
+### 1. Stable App Router
+The App Router, introduced as stable in Next.js 13, continues to be refined in version 14:
+
+```typescript
+// app/layout.tsx
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+### 2. Server Components by Default
+With the App Router, components are Server Components by default, offering:
+- **Faster page loads** - Less JavaScript sent to the client
+- **Better SEO** - Content rendered on the server
+- **Improved performance** - Direct database access without APIs
+
+```typescript
+// This is a Server Component by default
+async function BlogPost({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug) // Direct database call
+  
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </article>
+  )
+}
+```
+
+### 3. Enhanced Development Experience
+Next.js 14 includes significant improvements to the development experience:
+- **Faster Hot Module Replacement (HMR)**
+- **Improved error overlay**
+- **Better TypeScript support**
+
+## Setting Up Your First Next.js 14 Project
+
+### Installation
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+```
+
+### Project Structure
+```
+my-app/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+├── next.config.js
+└── package.json
+```
+
+## Key Concepts
+
+### File-based Routing
+Next.js uses the file system for routing:
+
+```
+app/
+├── page.tsx          # /
+├── about/
+│   └── page.tsx      # /about
+└── blog/
+    ├── page.tsx      # /blog
+    └── [slug]/
+        └── page.tsx  # /blog/[slug]
+```
+
+### Data Fetching
+Server Components can fetch data directly:
+
+```typescript
+async function Posts() {
+  const posts = await fetch('https://api.example.com/posts')
+  const data = await posts.json()
+  
+  return (
+    <div>
+      {data.map((post) => (
+        <div key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.excerpt}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+```
+
+## Best Practices
+
+### 1. Use Server Components When Possible
+- Default choice for data fetching
+- Better performance and SEO
+- Only use Client Components when needed (interactivity, browser APIs)
+
+### 2. Optimize Images
+```typescript
+import Image from 'next/image'
+
+function ProfilePicture() {
+  return (
+    <Image
+      src="/profile.jpg"
+      alt="Profile"
+      width={500}
+      height={500}
+      priority // Load immediately
+    />
+  )
+}
+```
+
+### 3. Implement Proper Error Handling
+```typescript
+// app/error.tsx
+'use client'
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  )
+}
+```
+
+## Deployment
+
+### Vercel (Recommended)
+```bash
+npm i -g vercel
+vercel
+```
+
+### Self-hosting
+```bash
+npm run build
+npm start
+```
+
+## Conclusion
+
+Next.js 14 provides a robust foundation for building modern web applications. With its focus on performance, developer experience, and production-ready features, it's an excellent choice for your next project.
+
+The combination of Server Components, improved routing, and enhanced development tools makes Next.js 14 a powerful framework for both small projects and large-scale applications.
+
+Start building with Next.js 14 today and experience the difference in performance and developer productivity! 

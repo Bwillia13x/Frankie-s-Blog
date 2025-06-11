@@ -1,15 +1,12 @@
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import React, { useMemo, useCallback } from 'react';
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CalendarIcon, ClockIcon, ArrowRightIcon, EyeIcon, MessageCircleIcon, HeartIcon } from "lucide-react"
 import Link from "next/link"
-import { blogPosts, categories, popularTags } from "../../../lib/data/blogPosts";
-import type { BlogPost } from "../../../types";
-import { PageHeader, EngagementMetrics, AuthorCard, NewsletterCTA } from "../../components/common";
+import { blogPosts, categories, popularTags } from "@/lib/data/blogPosts";
+import type { BlogPost } from "@/types";
+import { PageHeader, EngagementMetrics, AuthorCard, NewsletterCTA } from "@/components/common";
 import { generatePageMetadata } from '@/lib/seo'; // Assuming @ is configured for src
 import { siteMetadata } from '@/lib/siteMetadata';
 import { Metadata } from 'next';
@@ -23,13 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function BlogPage() {
-  const featuredPosts: BlogPost[] = useMemo(() => blogPosts.filter(post => post.featured), [blogPosts]);
-  const regularPosts: BlogPost[] = useMemo(() => blogPosts.filter(post => !post.featured), [blogPosts]);
-
-  const handleNewsletterSubmit = useCallback((email: string) => {
-    console.log("Newsletter submitted for:", email);
-    // Actual subscription logic would go here
-  }, []);
+  const featuredPosts: BlogPost[] = blogPosts.filter(post => post.featured);
+  const regularPosts: BlogPost[] = blogPosts.filter(post => !post.featured);
 
   // authorDetails can be memoized if its construction is complex or if BlogPage re-renders often
   // For now, it's a simple object definition.
@@ -58,7 +50,7 @@ export default function BlogPage() {
           title="📬 Weekly Dev Insights"
           buttonText="Subscribe"
           subscriberCount="2,500+"
-          onSubmit={handleNewsletterSubmit}
+          buttonLink="/newsletter"
           variant="inline"
           className="mb-16" // Original margin for the whole header section
         />

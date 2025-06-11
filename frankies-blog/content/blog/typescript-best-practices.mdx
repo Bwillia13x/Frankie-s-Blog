@@ -1,0 +1,295 @@
+---
+title: 'TypeScript Best Practices for Modern Development'
+date: '2024-01-10'
+tags: ['typescript', 'javascript', 'best-practices', 'development']
+summary: 'Essential TypeScript patterns and practices that will make your code more maintainable, type-safe, and performant.'
+image: '/images/blog/typescript-best-practices.jpg'
+author: 'Francisco Martinez'
+---
+
+# TypeScript Best Practices for Modern Development
+
+TypeScript has become the standard for building scalable JavaScript applications. Following these best practices will help you write more maintainable, type-safe, and performant code.
+
+## 1. Strict TypeScript Configuration
+
+Always start with a strict TypeScript configuration:
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true
+  }
+}
+```
+
+## 2. Use Type Assertions Sparingly
+
+Avoid type assertions when possible:
+
+```typescript
+// ❌ Avoid
+const user = data as User;
+
+// ✅ Better - Use type guards
+function isUser(data: unknown): data is User {
+  return typeof data === 'object' && 
+         data !== null && 
+         'id' in data && 
+         'name' in data;
+}
+
+if (isUser(data)) {
+  // TypeScript knows data is User here
+  console.log(data.name);
+}
+```
+
+## 3. Leverage Union Types
+
+Use union types for better type safety:
+
+```typescript
+type Status = 'loading' | 'success' | 'error';
+type Theme = 'light' | 'dark' | 'auto';
+
+interface ApiResponse<T> {
+  status: Status;
+  data?: T;
+  error?: string;
+}
+```
+
+## 4. Generic Constraints
+
+Use generic constraints to make your functions more flexible:
+
+```typescript
+// ❌ Too generic
+function getProperty<T>(obj: T, key: string) {
+  return obj[key]; // Error: Element implicitly has 'any' type
+}
+
+// ✅ Better with constraints
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+const user = { id: 1, name: 'John', email: 'john@example.com' };
+const name = getProperty(user, 'name'); // Type is string
+```
+
+## 5. Utility Types
+
+Master built-in utility types:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
+// Partial - Make all properties optional
+type UpdateUser = Partial<User>;
+
+// Pick - Select specific properties
+type PublicUser = Pick<User, 'id' | 'name' | 'email'>;
+
+// Omit - Exclude specific properties
+type CreateUser = Omit<User, 'id'>;
+
+// Record - Create object type with specific keys
+type UserRoles = Record<string, 'admin' | 'user' | 'guest'>;
+```
+
+## 6. Discriminated Unions
+
+Use discriminated unions for better type narrowing:
+
+```typescript
+interface LoadingState {
+  status: 'loading';
+}
+
+interface SuccessState {
+  status: 'success';
+  data: string;
+}
+
+interface ErrorState {
+  status: 'error';
+  error: string;
+}
+
+type AppState = LoadingState | SuccessState | ErrorState;
+
+function handleState(state: AppState) {
+  switch (state.status) {
+    case 'loading':
+      // TypeScript knows this is LoadingState
+      return 'Loading...';
+    case 'success':
+      // TypeScript knows this is SuccessState
+      return state.data;
+    case 'error':
+      // TypeScript knows this is ErrorState
+      return state.error;
+  }
+}
+```
+
+## 7. Proper Error Handling
+
+Define error types explicitly:
+
+```typescript
+class AppError extends Error {
+  constructor(
+    message: string,
+    public code: string,
+    public statusCode: number = 500
+  ) {
+    super(message);
+    this.name = 'AppError';
+  }
+}
+
+class ValidationError extends AppError {
+  constructor(message: string, public field: string) {
+    super(message, 'VALIDATION_ERROR', 400);
+    this.name = 'ValidationError';
+  }
+}
+
+function validateUser(user: unknown): User {
+  if (!user || typeof user !== 'object') {
+    throw new ValidationError('Invalid user object', 'user');
+  }
+  // Additional validation...
+  return user as User;
+}
+```
+
+## 8. Module Declarations
+
+Extend existing types when needed:
+
+```typescript
+// types/global.d.ts
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
+// Extend Express Request
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: User;
+  }
+}
+
+export {};
+```
+
+## 9. Conditional Types
+
+Use conditional types for advanced type manipulation:
+
+```typescript
+type ApiResponse<T> = T extends string
+  ? { message: T }
+  : { data: T };
+
+type StringResponse = ApiResponse<string>; // { message: string }
+type UserResponse = ApiResponse<User>;     // { data: User }
+
+// Extract return type from Promise
+type Awaited<T> = T extends Promise<infer U> ? U : T;
+
+type UserData = Awaited<Promise<User>>; // User
+```
+
+## 10. Branded Types
+
+Create branded types for better type safety:
+
+```typescript
+type UserId = string & { __brand: 'UserId' };
+type Email = string & { __brand: 'Email' };
+
+function createUserId(id: string): UserId {
+  // Validation logic
+  return id as UserId;
+}
+
+function createEmail(email: string): Email {
+  // Email validation
+  return email as Email;
+}
+
+function sendEmail(userId: UserId, email: Email) {
+  // Implementation
+}
+
+// This prevents mixing up parameters
+const userId = createUserId('123');
+const email = createEmail('user@example.com');
+
+sendEmail(userId, email); // ✅ Correct
+// sendEmail(email, userId); // ❌ Error - types are swapped
+```
+
+## Performance Tips
+
+### 1. Use `const` Assertions
+```typescript
+const themes = ['light', 'dark'] as const;
+type Theme = typeof themes[number]; // 'light' | 'dark'
+```
+
+### 2. Prefer Interfaces for Object Shapes
+```typescript
+// ✅ Interface - better for objects
+interface User {
+  id: number;
+  name: string;
+}
+
+// ✅ Type alias - better for unions/primitives
+type Status = 'active' | 'inactive';
+```
+
+### 3. Use Index Signatures Carefully
+```typescript
+// ❌ Too permissive
+interface User {
+  [key: string]: any;
+}
+
+// ✅ More specific
+interface User {
+  id: number;
+  name: string;
+  metadata?: Record<string, string>;
+}
+```
+
+## Conclusion
+
+Following these TypeScript best practices will lead to:
+- **Better code quality** - Catch errors at compile time
+- **Improved maintainability** - Self-documenting code
+- **Enhanced developer experience** - Better IDE support
+- **Reduced bugs** - Type safety prevents common mistakes
+
+Start implementing these patterns gradually in your projects, and you'll see immediate improvements in code quality and developer productivity. 

@@ -1,7 +1,8 @@
+import React from 'react';
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { UsersIcon, MessageCircleIcon, TrophyIcon, CalendarIcon, ExternalLinkIcon, HeartIcon, ShareIcon, BookOpenIcon } from "lucide-react"
+import { UsersIcon, MessageCircleIcon, TrophyIcon, CalendarIcon, ExternalLinkIcon, HeartIcon, ShareIcon, BookOpenIcon, LucideIcon } from "lucide-react"
 import Link from "next/link"
 import {
   communityStatsData,
@@ -10,8 +11,8 @@ import {
   upcomingEventsData,
   successStoriesData,
   SuccessStory as SuccessStoryType
-} from "../../../lib/data/communityData";
-import { PageHeader, StatsGrid, SocialProof, Testimonial } from "../../components/common";
+} from "@/lib/data/communityData";
+import { PageHeader, StatsGrid, SocialProof, Testimonial } from "@/components/common";
 import { generatePageMetadata } from '@/lib/seo';
 import { siteMetadata } from '@/lib/siteMetadata';
 import { Metadata } from 'next';
@@ -25,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Helper to map icon names to actual components for communityStats
-const CommunityIconMap: { [key: string]: React.ElementType } = {
+const CommunityIconMap: { [key: string]: LucideIcon } = {
   UsersIcon,
   MessageCircleIcon,
   BookOpenIcon,
@@ -281,4 +282,3 @@ export default function CommunityPage() {
     </div>
   )
 }
-</rewritten_file>

@@ -1,7 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Highlight.js theme for code syntax highlighting */
+@import 'highlight.js/styles/github-dark.css';
+
+/* Custom styles for markdown content */
+.prose .code-block {
+  @apply bg-slate-900 rounded-lg overflow-hidden mb-6;
+}
+
+.prose .code-block pre {
+  @apply p-4 overflow-x-auto text-sm;
+}
+
+.prose .inline-code {
+  @apply bg-slate-800 text-blue-300 px-2 py-1 rounded text-sm;
+}
+
+.prose .blockquote {
+  @apply border-l-4 border-blue-500 pl-4 my-6 italic text-slate-300 bg-slate-800/50 py-2;
+}
+
+.prose .link {
+  @apply text-blue-400 underline hover:text-blue-300 transition-colors duration-200;
+}
+
+.prose .heading-1 {
+  @apply text-4xl font-bold text-white mb-6 border-b border-slate-700 pb-4;
+}
+
+.prose .heading-2 {
+  @apply text-3xl font-semibold text-white mb-4 mt-8;
+}
+
+.prose .heading-3 {
+  @apply text-2xl font-semibold text-white mb-3 mt-6;
+}
+
+.prose .heading-4 {
+  @apply text-xl font-semibold text-white mb-2 mt-4;
+}
+
+/* Override highlight.js background to match our theme */
+.hljs {
+  background: rgb(15 23 42) !important; /* slate-900 */
+  color: #e2e8f0 !important; /* slate-200 */
+}
+
+/* Ensure proper spacing and styling for content */
+.prose p {
+  @apply text-slate-300 mb-4 leading-relaxed;
+}
+
+.prose ul {
+  @apply text-slate-300 mb-4 ml-6 space-y-2 list-disc;
+}
+
+.prose ol {
+  @apply text-slate-300 mb-4 ml-6 space-y-2 list-decimal;
+}
+
+.prose li {
+  @apply relative;
+}
+
+.prose strong {
+  @apply text-white font-semibold;
+}
+
+.prose em {
+  @apply text-slate-200 italic;
+}
+
+/* Custom scrollbar for code blocks */
+.prose .code-block pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.prose .code-block pre::-webkit-scrollbar-track {
+  background: rgb(30 41 59); /* slate-800 */
+}
+
+.prose .code-block pre::-webkit-scrollbar-thumb {
+  background: rgb(71 85 105); /* slate-600 */
+  border-radius: 4px;
+}
+
+.prose .code-block pre::-webkit-scrollbar-thumb:hover {
+  background: rgb(100 116 139); /* slate-500 */
+}
 
 :root {
   --background: #111b22;
@@ -9,9 +98,6 @@
   --border: #243947;
   --accent: #1993e5;
   --muted: #93b3c8;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);

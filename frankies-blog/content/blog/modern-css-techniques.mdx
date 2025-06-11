@@ -1,0 +1,270 @@
+---
+title: "Modern CSS Techniques: Beyond Bootstrap and Tailwind"
+excerpt: "While frameworks like Tailwind have revolutionized how we write CSS, there's a whole world of native CSS features that can make your code cleaner and more maintainable."
+publishedAt: "2024-12-20"
+category: "Technical"
+tags: ["CSS", "Frontend", "Modern Web", "UI/UX"]
+featured: false
+image: "/blog/modern-css.jpg"
+author: "Francisco Rojas"
+views: 3289
+comments: 45
+likes: 178
+---
+
+# Modern CSS Techniques: Beyond Bootstrap and Tailwind
+
+While frameworks like Tailwind have revolutionized how we write CSS, there's a whole world of native CSS features that can make your code cleaner and more maintainable. Let's explore some cutting-edge techniques that every frontend developer should know.
+
+## 1. CSS Container Queries
+
+Container queries are a game-changer for responsive design. Instead of being limited to viewport-based media queries, you can now style elements based on their container's size.
+
+```css
+.card-container {
+  container-type: inline-size;
+}
+
+@container (min-width: 300px) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+}
+```
+
+This is particularly powerful for component-based architecture where components need to adapt to their parent container rather than the viewport.
+
+## 2. CSS Grid with `subgrid`
+
+Subgrid allows nested grids to participate in their parent's grid layout:
+
+```css
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.nested-grid {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: subgrid;
+}
+```
+
+This creates more consistent layouts and reduces the need for complex positioning.
+
+## 3. CSS Custom Properties (Variables) with `@property`
+
+Define custom properties with specific types and default values:
+
+```css
+@property --rotation {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rotating-element {
+  transform: rotate(var(--rotation));
+  transition: --rotation 0.3s ease;
+}
+
+.rotating-element:hover {
+  --rotation: 45deg;
+}
+```
+
+## 4. Cascade Layers
+
+Control specificity with cascade layers:
+
+```css
+@layer reset, base, components, utilities;
+
+@layer reset {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+  }
+}
+```
+
+This gives you fine-grained control over CSS specificity without resorting to `!important`.
+
+## 5. Color Functions and Relative Colors
+
+Create color variations programmatically:
+
+```css
+:root {
+  --primary: oklch(70% 0.25 200);
+}
+
+.button {
+  background: var(--primary);
+}
+
+.button:hover {
+  background: oklch(from var(--primary) calc(l - 0.1) c h);
+}
+```
+
+## 6. Logical Properties
+
+Write CSS that works across different writing modes:
+
+```css
+.card {
+  margin-block: 1rem;
+  margin-inline: 0.5rem;
+  padding-block-start: 2rem;
+  border-inline-start: 3px solid blue;
+}
+```
+
+This is especially important for internationalization.
+
+## 7. `has()` Selector
+
+Style parents based on their children:
+
+```css
+.form-group:has(input:invalid) {
+  border-color: red;
+}
+
+.card:has(img) {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+```
+
+## 8. View Transitions API
+
+Create smooth transitions between page states:
+
+```css
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}
+```
+
+```javascript
+// JavaScript to trigger transition
+document.startViewTransition(() => {
+  // Make DOM changes here
+  updateContent();
+});
+```
+
+## 9. Advanced Animations with `@scroll-timeline`
+
+Create scroll-driven animations:
+
+```css
+@scroll-timeline scroll-in-view {
+  source: auto;
+  orientation: vertical;
+}
+
+.fade-in {
+  animation: fade-in auto linear;
+  animation-timeline: scroll-in-view;
+  animation-range: entry 0% entry 100%;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+```
+
+## 10. CSS Nesting
+
+Write more maintainable CSS with native nesting:
+
+```css
+.button {
+  padding: 0.5rem 1rem;
+  
+  &:hover {
+    background-color: blue;
+  }
+  
+  &.large {
+    padding: 1rem 2rem;
+  }
+  
+  & .icon {
+    margin-right: 0.5rem;
+  }
+}
+```
+
+## Best Practices for Modern CSS
+
+### 1. Use CSS Custom Properties for Design Tokens
+
+```css
+:root {
+  --color-primary: #007bff;
+  --color-secondary: #6c757d;
+  --font-size-base: 1rem;
+  --spacing-unit: 0.5rem;
+}
+```
+
+### 2. Combine Utility Classes with Component Classes
+
+```css
+/* Component styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* Utility classes for variations */
+.bg-primary { background-color: var(--color-primary); }
+.text-white { color: white; }
+.px-4 { padding-inline: calc(var(--spacing-unit) * 4); }
+```
+
+### 3. Use Feature Queries for Progressive Enhancement
+
+```css
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+```
+
+## Conclusion
+
+These modern CSS techniques can help you write more maintainable, performant, and future-proof stylesheets. While frameworks like Tailwind and Bootstrap are excellent tools, understanding these native CSS features will make you a more well-rounded frontend developer.
+
+The key is to use the right tool for the job. Sometimes a utility framework is perfect, and sometimes these native CSS features provide exactly what you need with better performance and smaller bundle sizes.
+
+What modern CSS technique are you most excited to try? Let me know in the comments!
+
+---
+
+*Want to dive deeper into any of these techniques? Check out my [CSS masterclass course](/courses/modern-css) or follow me on [Twitter](https://twitter.com/frankie_rojas) for more frontend tips.* 

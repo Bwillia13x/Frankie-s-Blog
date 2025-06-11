@@ -26,28 +26,6 @@ const config: Config = {
         '88': '22rem',
         '128': '32rem',
       },
-      typography: {
-        invert: {
-          css: {
-            '--tw-prose-body': '#93b3c8',
-            '--tw-prose-headings': '#ffffff',
-            '--tw-prose-lead': '#93b3c8',
-            '--tw-prose-links': '#1993e5',
-            '--tw-prose-bold': '#ffffff',
-            '--tw-prose-counters': '#93b3c8',
-            '--tw-prose-bullets': '#243947',
-            '--tw-prose-hr': '#243947',
-            '--tw-prose-quotes': '#93b3c8',
-            '--tw-prose-quote-borders': '#243947',
-            '--tw-prose-captions': '#93b3c8',
-            '--tw-prose-code': '#ffffff',
-            '--tw-prose-pre-code': '#93b3c8',
-            '--tw-prose-pre-bg': '#243947',
-            '--tw-prose-th-borders': '#243947',
-            '--tw-prose-td-borders': '#243947',
-          },
-        },
-      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
@@ -69,9 +47,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/container-queries'),
-  ],
+  plugins: [],
 };
 export default config;

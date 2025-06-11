@@ -1,24 +1,119 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [ main, develop ]
   pull_request:
-    branches: [main]
+    branches: [ main, develop ]
 
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: frankies-blog/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: ./frankies-blog
+      run: npm ci
+      
+    - name: Run linter
+      working-directory: ./frankies-blog
+      run: npm run lint
+      
+    - name: Run type checking
+      working-directory: ./frankies-blog
+      run: npm run type-check
+      
+    - name: Run tests
+      working-directory: ./frankies-blog
+      run: npm test -- --coverage --watchAll=false
+      
+    - name: Upload coverage reports
+      if: matrix.node-version == '20.x'
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./frankies-blog/coverage/lcov.info
+        flags: unittests
+        name: codecov-umbrella
+        
+    - name: Build application
+      working-directory: ./frankies-blog
+      run: npm run build
+      
+    - name: Run build analysis
+      working-directory: ./frankies-blog
+      run: npm run analyze
+      
+  security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm build
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: frankies-blog/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: ./frankies-blog
+      run: npm ci
+      
+    - name: Run security audit
+      working-directory: ./frankies-blog
+      run: npm audit --audit-level moderate
+      
+    - name: Run dependency check
+      working-directory: ./frankies-blog
+      run: npx depcheck
+      
+  lighthouse:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: frankies-blog/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: ./frankies-blog
+      run: npm ci
+      
+    - name: Build application
+      working-directory: ./frankies-blog
+      run: npm run build
+      
+    - name: Start application
+      working-directory: ./frankies-blog
+      run: npm start &
+      
+    - name: Wait for app to be ready
+      run: npx wait-on http://localhost:3000
+      
+    - name: Run Lighthouse CI
+      working-directory: ./frankies-blog
+      run: npx lhci autorun
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

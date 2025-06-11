@@ -1,198 +1,219 @@
+import React from 'react';
+import { Metadata } from 'next';
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { MonitorIcon, KeyboardIcon, MouseIcon, HeadphonesIcon, CoffeeIcon, ExternalLinkIcon } from "lucide-react"
+import { ExternalLinkIcon, MonitorIcon, KeyboardIcon, MouseIcon } from "lucide-react"
 import Link from "next/link"
-import { setupCategoriesData } from "../../../lib/data/setupItems";
-import { PageHeader } from "../../components/common";
+import { PageHeader } from "@/components/common";
 import { generatePageMetadata } from '@/lib/seo';
 import { siteMetadata } from '@/lib/siteMetadata';
-import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: `What I Use - ${siteMetadata.title}`,
-    description: 'A detailed look at the hardware, software, and tools I use daily.',
+    title: `Uses - ${siteMetadata.title}`,
+    description: 'The tools, software, and hardware that I use for development, design, and productivity.',
     path: '/uses',
   });
 }
 
-// workflowTips remains as page-specific content
-const workflowTips = [
+const categories = [
   {
-    title: "Morning Routine",
-    description: "I start each day by reviewing my Notion dashboard, checking GitHub notifications, and planning my top 3 priorities.",
-    icon: "🌅"
+    title: 'Development Tools',
+    items: [
+      {
+        name: 'Visual Studio Code',
+        description: 'My go-to code editor with custom themes and extensions for maximum productivity.',
+        link: 'https://code.visualstudio.com/',
+      },
+      {
+        name: 'iTerm2',
+        description: 'Terminal replacement for macOS with better customization and features.',
+        link: 'https://iterm2.com/',
+      },
+      {
+        name: 'GitHub Desktop',
+        description: 'For complex git operations and visualizing repository changes.',
+        link: 'https://desktop.github.com/',
+      },
+      {
+        name: 'Postman',
+        description: 'API development and testing tool for building and testing APIs.',
+        link: 'https://www.postman.com/',
+      },
+    ],
   },
   {
-    title: "Focus Sessions",
-    description: "I use the Pomodoro Technique with 45-minute focused work sessions followed by 15-minute breaks.",
-    icon: "⏰"
+    title: 'Languages & Frameworks',
+    items: [
+      {
+        name: 'TypeScript',
+        description: 'Primary language for all new projects. Provides excellent type safety and developer experience.',
+        link: 'https://www.typescriptlang.org/',
+      },
+      {
+        name: 'Next.js',
+        description: 'My framework of choice for React applications with great performance and DX.',
+        link: 'https://nextjs.org/',
+      },
+      {
+        name: 'Tailwind CSS',
+        description: 'Utility-first CSS framework that speeds up styling significantly.',
+        link: 'https://tailwindcss.com/',
+      },
+      {
+        name: 'Node.js',
+        description: 'Runtime for backend APIs and tooling, with Express or Fastify frameworks.',
+        link: 'https://nodejs.org/',
+      },
+    ],
   },
   {
-    title: "Code Reviews",
-    description: "I dedicate specific times for reviewing PRs to maintain code quality without interrupting deep work.",
-    icon: "👁️"
+    title: 'Design & Media',
+    items: [
+      {
+        name: 'Figma',
+        description: 'Collaborative design tool for creating mockups, prototypes, and design systems.',
+        link: 'https://figma.com/',
+      },
+      {
+        name: 'Unsplash',
+        description: 'High-quality stock photos for projects and design inspiration.',
+        link: 'https://unsplash.com/',
+      },
+      {
+        name: 'Heroicons',
+        description: 'Beautiful hand-crafted SVG icons made by the makers of Tailwind CSS.',
+        link: 'https://heroicons.com/',
+      },
+      {
+        name: 'Excalidraw',
+        description: 'Virtual collaborative whiteboard for sketching hand-drawn like diagrams.',
+        link: 'https://excalidraw.com/',
+      },
+    ],
   },
   {
-    title: "Learning Time",
-    description: "I block 1 hour every Friday afternoon for exploring new technologies and updating my skills.",
-    icon: "📚"
-  }
+    title: 'Productivity',
+    items: [
+      {
+        name: 'Notion',
+        description: 'All-in-one workspace for notes, project management, and knowledge base.',
+        link: 'https://notion.so/',
+      },
+      {
+        name: 'Obsidian',
+        description: 'Knowledge management and note-taking app with powerful linking capabilities.',
+        link: 'https://obsidian.md/',
+      },
+      {
+        name: 'CleanMyMac X',
+        description: 'Mac optimization and cleaning tool to keep my system running smoothly.',
+        link: 'https://cleanmymac.com/',
+      },
+      {
+        name: 'Rectangle',
+        description: 'Window management tool for macOS to organize and resize windows efficiently.',
+        link: 'https://rectangleapp.com/',
+      },
+    ],
+  },
+  {
+    title: 'Hardware',
+    items: [
+      {
+        name: 'MacBook Pro M1',
+        description: '14-inch MacBook Pro with M1 Pro chip, 16GB RAM, and 512GB SSD.',
+        link: 'https://apple.com/macbook-pro/',
+      },
+      {
+        name: 'LG UltraWide Monitor',
+        description: '34-inch curved ultrawide monitor for immersive coding and multitasking.',
+        link: 'https://lg.com/monitors',
+      },
+      {
+        name: 'Mechanical Keyboard',
+        description: 'Custom mechanical keyboard with Cherry MX switches for optimal typing experience.',
+        link: '#',
+      },
+      {
+        name: 'AirPods Pro',
+        description: 'Wireless earbuds with active noise cancellation for focused work sessions.',
+        link: 'https://apple.com/airpods-pro/',
+      },
+    ],
+  },
 ]
 
-// Helper to map icon names to actual components for setupCategories
-const SetupIconMap: { [key: string]: React.ElementType } = {
-  MonitorIcon,
-  KeyboardIcon,
-  MouseIcon, // Not used in current data but good to have if items change
-  HeadphonesIcon, // Not used
-  CoffeeIcon,
-};
-
 export default function UsesPage() {
-  const setupCategories = setupCategoriesData;
-
-  const pageDescription = (
-    <>
-      A detailed look at the hardware, software, and tools I use daily for development,
-      productivity, and content creation. Updated regularly as my setup evolves.
-      <div className="mt-6 text-sm text-slate-400">
-        Last updated: January 11, 2025
-      </div>
-    </>
-  );
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-      <div className="container mx-auto px-4 py-12">
-        <PageHeader
-          title="What I Use"
-          description={pageDescription}
-          badgeText="⚙️ My Setup"
-        />
+    <div className="px-40 flex-1 justify-center py-5">
+      <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div className="@container">
+          <div className="@[480px]:p-4">
+            <div className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10 bg-[#111b22]">
+              <div className="flex flex-col gap-2 text-left">
+                <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                  Uses
+                </h1>
+                <h2 className="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                  The tools, software, and hardware that power my development workflow
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {/* Setup Categories */}
-        <div className="space-y-16">
-          {setupCategories.map((category) => {
-            const IconComponent = category.iconName ? SetupIconMap[category.iconName] : null;
-            return (
-              <section key={category.id}>
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="text-blue-400">
-                    {IconComponent && <IconComponent className="w-6 h-6" />}
+        {/* Tools Categories */}
+        <div className="flex flex-col gap-10 px-4 py-10">
+          {categories.map((category) => (
+            <div key={category.title} className="flex flex-col gap-6">
+              <h2 className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">
+                {category.title}
+              </h2>
+              <div className="grid grid-cols-1 gap-4 @[480px]:grid-cols-2">
+                {category.items.map((item) => (
+                  <div key={item.name} className="flex flex-col gap-3 p-4 bg-[#243947]/30 rounded-lg hover:bg-[#243947]/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-white font-semibold">{item.name}</h3>
+                      {item.link !== '#' && (
+                        <a 
+                          href={item.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-[#1993e5] hover:text-white transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-[#93b3c8] text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <div>
-                    <h2 className="text-3xl font-bold text-white">{category.name}</h2>
-                    <p className="text-slate-300 mt-1">{category.description}</p>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                {category.items.map((item, index) => (
-                  <Card key={index} className="bg-slate-800/50 backdrop-blur-sm border-slate-700 hover:border-blue-500/50 transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <CardTitle className="text-white mb-2 flex items-center gap-2">
-                            {item.name}
-                            {item.price !== "Free" && (
-                              <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">
-                                {item.price}
-                              </Badge>
-                            )}
-                            {item.price === "Free" && (
-                              <Badge className="text-xs bg-green-500/20 text-green-300 border-green-400/30">
-                                Free
-                              </Badge>
-                            )}
-                          </CardTitle>
-                          <CardDescription className="text-slate-300">
-                            {item.description}
-                          </CardDescription>
-                        </div>
-                        <Button asChild size="sm" variant="ghost" className="text-slate-400 hover:text-blue-400">
-                          <Link href={item.link} target="_blank">
-                            <ExternalLinkIcon className="w-4 h-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-700">
-                        <div className="text-sm text-slate-400 mb-1">Why I chose this:</div>
-                        <div className="text-sm text-slate-300 italic">"{item.why}"</div>
-                      </div>
-                    </CardContent>
-                  </Card>
                 ))}
               </div>
-            </section>
+            </div>
           ))}
         </div>
 
-        {/* Workflow Section */}
-        <section className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              My <span className="text-blue-400">Workflow</span>
-            </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto">
-              Beyond tools, here are the processes and habits that keep me productive and focused.
+        {/* Note */}
+        <div className="flex px-4 py-6 justify-center">
+          <div className="bg-[#243947]/30 rounded-lg p-6 text-center max-w-2xl">
+            <h3 className="text-white font-semibold mb-2">Constantly Evolving</h3>
+            <p className="text-[#93b3c8] text-sm leading-relaxed">
+              This list is constantly evolving as I discover new tools and refine my workflow. 
+              I'm always open to recommendations for tools that could improve productivity and development experience.
             </p>
+            <div className="mt-4">
+              <a href="/contact" className="text-[#1993e5] hover:text-white transition-colors text-sm font-medium">
+                Suggest a tool →
+              </a>
+            </div>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {workflowTips.map((tip, index) => (
-              <Card key={index} className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="text-2xl">{tip.icon}</div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-2">{tip.title}</h3>
-                      <p className="text-slate-300 text-sm">{tip.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Affiliate Disclaimer */}
-        <section className="mt-16">
-          <Card className="bg-slate-800/30 border-slate-700">
-            <CardContent className="p-6 text-center">
-              <h3 className="text-lg font-semibold text-white mb-3">💡 Transparency Note</h3>
-              <p className="text-slate-300 text-sm max-w-2xl mx-auto">
-                Some links on this page may be affiliate links. This means I may earn a small commission 
-                if you purchase through these links, at no additional cost to you. I only recommend products 
-                I genuinely use and believe in. Your support helps me create more content like this!
-              </p>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* CTA Section */}
-        <section className="mt-16 text-center">
-          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 border-0 max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Questions About My Setup?</h3>
-              <p className="text-blue-100 mb-6">
-                I love talking about tools and productivity! Feel free to ask me anything about 
-                my setup or suggest improvements.
-              </p>
-              <div className="flex gap-3 justify-center">
-                <Button asChild variant="secondary" className="bg-white text-blue-600 hover:bg-slate-100">
-                  <Link href="/contact">Get In Touch</Link>
-                </Button>
-                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10">
-                  <Link href="/blog">Read My Blog</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+        </div>
       </div>
     </div>
   )
