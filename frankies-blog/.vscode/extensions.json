@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "unifiedjs.vscode-mdx",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-json",
+    "github.copilot",
+    "github.copilot-chat",
+    "ms-vscode.vscode-markdown",
+    "yoavbls.pretty-ts-errors",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-close-tag",
+    "christian-kohler.npm-intellisense"
+  ]
+} 

@@ -1,0 +1,32 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.autoImports": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "html": "html"
+  },
+  "files.associations": {
+    "*.mdx": "mdx"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "workbench.editor.enablePreview": false,
+  "explorer.confirmDelete": false,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "terminal.integrated.defaultProfile.osx": "zsh"
+} 
