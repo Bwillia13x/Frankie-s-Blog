@@ -14,13 +14,11 @@
     "@next/mdx": "^15.3.3",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
-    "gray-matter": "^4.0.3",
+    "autoprefixer": "^10.4.16",
     "next": "14.2.3",
-    "next-mdx-remote": "^5.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "postcss": "^8.4.38",
-    "autoprefixer": "^10.4.16"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
