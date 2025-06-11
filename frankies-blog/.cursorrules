@@ -1,0 +1,52 @@
+# Cursor Background Agent Rules for Frankie's Blog
+
+## Project Overview
+This is a Next.js 14 blog application with MDX support, TailwindCSS styling, and GitHub Pages deployment.
+
+## Key Technologies
+- Next.js 14 (App Router)
+- TypeScript
+- TailwindCSS
+- MDX for blog posts
+- Jest for testing
+- GitHub Actions for CI/CD
+
+## Development Guidelines
+1. Use functional components with TypeScript
+2. Follow conventional commit messages
+3. Maintain MDX blog posts in /content/posts/
+4. Use TailwindCSS for styling
+5. Ensure static export compatibility
+
+## File Structure Context
+- `/src/app/` - Next.js App Router pages
+- `/src/components/` - Reusable React components
+- `/src/lib/` - Utility functions and configurations
+- `/content/posts/` - MDX blog posts
+- `/.github/workflows/` - CI/CD pipelines
+
+## Background Agent Tasks
+- Help with component development
+- Assist with MDX blog post creation
+- Provide TypeScript type definitions
+- Suggest performance optimizations
+- Help with TailwindCSS styling
+- Assist with testing and debugging
+
+## Code Style
+- Use 2 spaces for indentation
+- Prefer const over let
+- Use descriptive variable names
+- Add JSDoc comments for complex functions
+- Maintain consistent import order
+
+## Common Commands
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm test` - Run tests
+- `pnpm lint` - Run linting
+
+## Deployment
+- Automatic deployment via GitHub Actions
+- Static export to GitHub Pages
+- Base path configured for GitHub Pages 
