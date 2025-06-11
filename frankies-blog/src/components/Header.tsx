@@ -1,7 +1,36 @@
+'use client';
 import Link from 'next/link';
 import { siteMetadata } from '@/lib/siteMetadata';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [menuOpen]);
+
+  const NavLinks = () => (
+    <>
+      {siteMetadata.nav.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className="relative px-4 py-2 text-lg font-medium text-muted hover:text-white transition-colors duration-200 rounded-xl hover:bg-[#243947]/50 group"
+          onClick={() => setMenuOpen(false)}
+        >
+          {item.title}
+          <div className="absolute inset-x-0 bottom-0 h-0.5 bg-[#1993e5] scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+        </Link>
+      ))}
+    </>
+  );
+
   return (
     <header className="sticky top-0 z-50 bg-[#111b22]/95 backdrop-blur-lg border-b border-[#243947]/50">
       <div className="max-w-7xl mx-auto px-4 @lg:px-8">
@@ -27,16 +56,7 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden @md:flex items-center space-x-1">
-            {siteMetadata.nav.map((item) => (
-              <Link 
-                key={item.href} 
-                href={item.href} 
-                className="relative px-4 py-2 text-sm font-medium text-muted hover:text-white transition-colors duration-200 rounded-xl hover:bg-[#243947]/50 group"
-              >
-                {item.title}
-                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-[#1993e5] scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-              </Link>
-            ))}
+            <NavLinks />
           </nav>
 
           {/* Action Buttons */}
@@ -76,7 +96,11 @@ export default function Header() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="@md:hidden p-2 text-muted hover:text-white hover:bg-[#243947]/50 rounded-xl transition-all duration-200">
+            <button
+              className="@md:hidden p-2 text-muted hover:text-white hover:bg-[#243947]/50 rounded-xl transition-all duration-200"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open Menu"
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -84,6 +108,22 @@ export default function Header() {
           </div>
         </div>
       </div>
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#111b22]/95 backdrop-blur flex flex-col items-center justify-center space-y-6 animate-fade-in" role="dialog" aria-modal="true">
+          <button
+            className="absolute top-6 right-6 p-2 text-muted hover:text-white hover:bg-[#243947]/50 rounded-xl transition-all duration-200"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close Menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <nav className="flex flex-col items-center space-y-6 text-xl">
+            <NavLinks />
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

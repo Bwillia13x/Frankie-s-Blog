@@ -55,3 +55,12 @@ body {
 .prose blockquote {
   @apply border-l-[#1993e5] text-[#93b3c8];
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #1993e5;
+  color: #ffffff;
+}
