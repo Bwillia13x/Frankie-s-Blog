@@ -1,19 +1,19 @@
 const isProd = process.env.NODE_ENV === 'production'
-const repoName = 'Frankie-s-Blog'
+const isStaticExport = process.env.STATIC_EXPORT === 'true'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Only enable static export in production
-  ...(isProd && { output: 'export' }),
-  // Set the basePath and assetPrefix for production builds on GitHub Pages.
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  // Only enable static export when explicitly requested (e.g., for GitHub Pages)
+  ...(isStaticExport && { output: 'export' }),
   experimental: {
     optimizePackageImports: ['lucide-react']
   },
   images: {
-    unoptimized: isProd // Only unoptimize images in production for static export
-  }
+    // Only unoptimize images for static export
+    unoptimized: isStaticExport
+  },
+  // Enable standalone output for better performance on serverless platforms
+  ...(isProd && !isStaticExport && { output: 'standalone' })
 }
 
 export default nextConfig
