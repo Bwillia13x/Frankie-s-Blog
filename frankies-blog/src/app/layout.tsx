@@ -23,10 +23,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${mono.variable} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+      <body className={`${inter.variable} ${mono.variable} antialiased bg-[#111b22] text-white min-h-screen`}>
+        <div className="relative flex size-full min-h-screen flex-col bg-[#111b22] dark group/design-root overflow-x-hidden">
+          <div className="layout-container flex h-full grow flex-col">
+            <Header />
+            <main className="flex flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   )

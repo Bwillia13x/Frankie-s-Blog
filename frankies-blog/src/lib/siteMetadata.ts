@@ -1,16 +1,17 @@
 export const siteMetadata = {
-  title: "Frankie's Blog",
-  author: 'Frankie',
-  description: 'A personal blog built with Next.js',
+  title: "Francisco Rojas",
+  author: 'Francisco Rojas',
+  description: 'A passionate writer and tech enthusiast exploring the latest trends, sharing insights, and discussing exciting developments in the world of technology.',
   nav: [
-    { title: 'Home', href: '/' },
-    { title: 'Blog', href: '/blog' },
     { title: 'About', href: '/about' },
+    { title: 'Blog', href: '/' },
+    { title: 'Projects', href: '/projects' },
+    { title: 'Contact', href: '/contact' },
   ],
   social: {
-    twitter: 'https://twitter.com/frankie',
-    github: 'https://github.com/frankie',
-    linkedin: 'https://linkedin.com/in/frankie',
+    twitter: 'https://twitter.com/frankie_rojas',
+    github: 'https://github.com/frankie-rojas',
+    linkedin: 'https://linkedin.com/in/francisco-rojas',
   },
 } as const;
 

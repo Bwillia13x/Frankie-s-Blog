@@ -32,6 +32,10 @@ export function getAllPostsMeta(): PostMeta[] {
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 }
 
+export function getAllPosts(): PostMeta[] {
+  return getAllPostsMeta();
+}
+
 export async function getPostBySlug(slug: string) {
   const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, 'utf8');
