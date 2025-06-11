@@ -1,41 +1,17 @@
 import { Badge } from "@/components/ui/badge"
+import React, { useCallback, useMemo } from 'react'; // Import useCallback and useMemo
+import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CalendarIcon, ClockIcon, EyeIcon, HeartIcon, MessageCircleIcon, ShareIcon, ArrowLeftIcon, BookmarkIcon } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-
-// Sample blog posts data - in a real app, this would come from a CMS or database
-const blogPosts = {
-  "building-scalable-react-applications": {
-    title: "Building Scalable React Applications: Lessons from Production",
-    excerpt: "Key insights and patterns I've learned from building React applications that serve millions of users.",
-    content: "This is the full content of the blog post about building scalable React applications...",
-    author: "Francisco",
-    publishedAt: "2024-12-15",
-    readTime: "8 min read",
-    tags: ["React", "Performance", "Architecture", "Scaling"],
-    views: 15420,
-    likes: 234,
-    comments: 42,
-    category: "Frontend Development",
-    featured: true
-  },
-  "api-design-best-practices": {
-    title: "API Design Best Practices: Creating APIs Developers Love",
-    excerpt: "A comprehensive guide to designing REST APIs that are intuitive, maintainable, and scalable.",
-    content: "This is the full content of the blog post about API design best practices...",
-    author: "Francisco",
-    publishedAt: "2024-11-28",
-    readTime: "12 min read",
-    tags: ["API Design", "REST", "Backend", "Best Practices"],
-    views: 8920,
-    likes: 156,
-    comments: 28,
-    category: "Backend Development",
-    featured: false
-  }
-}
+import { blogPosts } from "../../../../lib/data/blogPosts";
+import type { BlogPost } from "../../../../types";
+import { PageHeader, EngagementMetrics, AuthorCard, NewsletterCTA } from "../../../../components/common";
+import { generatePageMetadata as generatePageSeoMetadata } from '@/lib/seo'; // Renamed import
+import { siteMetadata } from '@/lib/siteMetadata';
+import { Metadata } from 'next';
 
 interface BlogPostPageProps {
   params: {
@@ -43,13 +19,65 @@ interface BlogPostPageProps {
   }
 }
 
+// This function is duplicated from the page component. Ideally, it should be in a shared lib/utils.
+// For now, keeping it here to satisfy generateMetadata's needs.
+const getPostBySlugForMeta = (slug: string): BlogPost | undefined => {
+  return blogPosts.find(p => p.slug === slug);
+};
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const post = getPostBySlugForMeta(params.slug);
+  if (!post) {
+    // Optionally, return default metadata or handle notFound if preferred
+    // For now, returning metadata for a generic "Not Found" page if post is not found
+    return generatePageSeoMetadata({
+      title: `Post Not Found - ${siteMetadata.title}`,
+      description: "The requested blog post could not be found.",
+      path: `/blog/${params.slug}`,
+    });
+  }
+
+  return generatePageSeoMetadata({
+    title: post.title, // PageHeader will use template, so no need for siteMetadata.title here
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.image, // Optional image for the post
+    type: 'article', // This is an article page
+    // Potentially add author details if available and desired in metadata
+    // publishedTime: post.publishedAt (if OpenGraph 'article' type supports it well)
+  });
+}
+
+
+const getPostBySlug = (slug: string): BlogPost | undefined => {
+  return blogPosts.find(p => p.slug === slug);
+};
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params
-  const post = blogPosts[slug as keyof typeof blogPosts]
+  const { slug } = params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound()
   }
+
+  const handleNewsletterSubmit = useCallback((email: string) => {
+    console.log("Newsletter submitted for:", email);
+  }, []);
+
+  const authorCardDetails = useMemo(() => ({
+    authorName: post.author || "Francisco",
+    authorTitle: "Full-Stack Developer & Tech Lead",
+    avatarFallback: post.author ? post.author.charAt(0).toUpperCase() : "F",
+    bio: "Passionate about building scalable applications and sharing knowledge with the developer community.",
+    stats: [
+      { label: "Posts", value: blogPosts.length },
+      { label: "Followers", value: "2.8K" },
+      { label: "Following", value: "892" },
+    ],
+    actionLink: { href: "/contact", label: "Follow" }
+  }), [post.author, blogPosts.length]);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
@@ -68,42 +96,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Main Content */}
           <article className="lg:col-span-3">
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg">
-              {/* Article Header */}
+              <PageHeader
+                title={post.title}
+                description={post.excerpt} // Use excerpt here
+                className="p-8 border-b border-slate-700 text-left mb-0"
+              />
+
               <div className="p-8 border-b border-slate-700">
                 <div className="mb-4">
-                  <Badge className="bg-blue-500/20 text-blue-300 border-blue-400/30">
-                    {post.category}
-                  </Badge>
-                  {post.featured && (
-                    <Badge className="ml-2 bg-yellow-500/20 text-yellow-300 border-yellow-400/30">
-                      ⭐ Featured
+                    <Badge className="bg-blue-500/20 text-blue-300 border-blue-400/30">
+                        {post.category}
                     </Badge>
-                  )}
+                    {post.featured && (
+                        <Badge className="ml-2 bg-yellow-500/20 text-yellow-300 border-yellow-400/30">
+                        ⭐ Featured
+                        </Badge>
+                    )}
                 </div>
-                
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                  {post.title}
-                </h1>
-                
-                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                {/* Meta Information */}
                 <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400 mb-6">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      F
+                      {post.author ? post.author.charAt(0).toUpperCase() : 'A'}
                     </div>
-                    <span className="text-slate-300">{post.author}</span>
+                    <span className="text-slate-300">{post.author || "Author Name"}</span>
                   </div>
                   <span className="flex items-center gap-1">
                     <CalendarIcon className="w-4 h-4" />
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
+                    {new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </span>
                   <span className="flex items-center gap-1">
                     <ClockIcon className="w-4 h-4" />
@@ -111,21 +130,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </span>
                 </div>
 
-                {/* Engagement Metrics */}
-                <div className="flex items-center gap-6 text-sm text-slate-400 mb-6">
-                  <span className="flex items-center gap-1">
-                    <EyeIcon className="w-4 h-4" />
-                    {post.views.toLocaleString()} views
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <HeartIcon className="w-4 h-4" />
-                    {post.likes} likes
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MessageCircleIcon className="w-4 h-4" />
-                    {post.comments} comments
-                  </span>
-                </div>
+                <EngagementMetrics views={post.views} likes={post.likes} comments={post.comments} className="mb-6" />
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2">
@@ -174,51 +179,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Sidebar */}
           <aside className="space-y-8">
-            {/* Author Card */}
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
-                    F
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">Francisco</h3>
-                  <p className="text-sm text-slate-400">Full-Stack Developer & Tech Lead</p>
-                </div>
-                <p className="text-sm text-slate-300 text-center mb-4">
-                  Passionate about building scalable applications and sharing knowledge with the developer community.
-                </p>
-                <div className="grid grid-cols-3 gap-3 text-center text-xs">
-                  <div>
-                    <div className="font-bold text-white">47</div>
-                    <div className="text-slate-400">Posts</div>
-                  </div>
-                  <div>
-                    <div className="font-bold text-white">2.8K</div>
-                    <div className="text-slate-400">Followers</div>
-                  </div>
-                  <div>
-                    <div className="font-bold text-white">892</div>
-                    <div className="text-slate-400">Following</div>
-                  </div>
-                </div>
-                <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
-                  <Link href="/contact">Follow</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Newsletter Signup */}
-            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 border-0">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-lg font-bold text-white mb-2">📬 Join the Newsletter</h3>
-                <p className="text-blue-100 text-sm mb-4">
-                  Get the latest posts and insights delivered to your inbox weekly.
-                </p>
-                <Button asChild variant="secondary" className="w-full bg-white text-blue-600 hover:bg-slate-100">
-                  <Link href="/newsletter">Subscribe</Link>
-                </Button>
-              </CardContent>
-            </Card>
+            <AuthorCard {...authorCardDetails} />
+            <NewsletterCTA
+              title="📬 Join the Newsletter"
+              description="Get the latest posts and insights delivered to your inbox weekly."
+              buttonText="Subscribe"
+              onSubmit={handleNewsletterSubmit} // Or provide buttonLink="/newsletter" if it's a page link
+              className="bg-gradient-to-r from-blue-600 to-purple-600 border-0" // Custom styling for this instance
+              // The input/button styling in NewsletterCTA is slightly different than original here
+            />
           </aside>
         </div>
       </div>
@@ -228,7 +197,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 // Generate static params for known blog posts
 export async function generateStaticParams() {
-  return Object.keys(blogPosts).map((slug) => ({
-    slug,
-  }))
-} 
+  // This should now use the slugs from the imported blogPosts array
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+// Ensure BlogPost interface is also imported if not already. It is now.

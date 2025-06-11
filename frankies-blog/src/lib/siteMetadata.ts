@@ -2,6 +2,9 @@ export const siteMetadata = {
   title: "Francisco Rojas",
   author: 'Francisco Rojas',
   description: 'A passionate software engineer with expertise in full-stack development, cloud technologies, and building scalable applications that solve real-world problems.',
+  siteUrl: 'https://www.frankies.blog', // Placeholder URL, replace with actual
+  socialBanner: '/images/social-banner.png', // Placeholder global social banner image
+  twitterHandle: '@frankie_rojas', // Extracted from social.twitter
   nav: [
     { title: 'About', href: '/' },
     { title: 'Projects', href: '/projects' },

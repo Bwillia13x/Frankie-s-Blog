@@ -3,223 +3,45 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { ExternalLinkIcon, DownloadIcon, StarIcon, BookOpenIcon, CodeIcon, ToolIcon, GraduationCapIcon, RocketIcon } from "lucide-react"
 import Link from "next/link"
+import {
+  toolCategoriesData,
+  guidesData,
+  codeTemplatesData,
+  learningResourcesData
+} from "../../../lib/data/resources";
+import { PageHeader, NewsletterCTA } from "../../components/common";
+import { generatePageMetadata } from '@/lib/seo';
+import { siteMetadata } from '@/lib/siteMetadata';
+import { Metadata } from 'next';
 
-const toolCategories = [
-  {
-    id: "development",
-    name: "Development Tools",
-    icon: <CodeIcon className="w-5 h-5" />,
-    description: "Essential tools for modern web development",
-    tools: [
-      {
-        name: "Visual Studio Code",
-        description: "My go-to code editor with these essential extensions",
-        category: "Editor",
-        link: "https://code.visualstudio.com/",
-        rating: 5,
-        free: true,
-        note: "Must-have extensions: Prettier, ESLint, GitLens, Thunder Client"
-      },
-      {
-        name: "Figma",
-        description: "For UI/UX design and prototyping",
-        category: "Design",
-        link: "https://figma.com",
-        rating: 5,
-        free: true,
-        note: "Great for developer-designer collaboration"
-      },
-      {
-        name: "Postman",
-        description: "API development and testing",
-        category: "API Testing",
-        link: "https://postman.com",
-        rating: 4,
-        free: true,
-        note: "Perfect for API documentation and testing"
-      },
-      {
-        name: "Docker",
-        description: "Containerization for consistent development environments",
-        category: "DevOps",
-        link: "https://docker.com",
-        rating: 5,
-        free: true,
-        note: "Essential for modern deployment workflows"
-      }
-    ]
-  },
-  {
-    id: "productivity",
-    name: "Productivity & Organization",
-    icon: <ToolIcon className="w-5 h-5" />,
-    description: "Tools that help me stay organized and efficient",
-    tools: [
-      {
-        name: "Notion",
-        description: "All-in-one workspace for notes, docs, and project management",
-        category: "Organization",
-        link: "https://notion.so",
-        rating: 5,
-        free: true,
-        note: "My second brain for everything"
-      },
-      {
-        name: "Linear",
-        description: "Issue tracking and project management for dev teams",
-        category: "Project Management",
-        link: "https://linear.app",
-        rating: 5,
-        free: false,
-        note: "Best issue tracker I've used"
-      },
-      {
-        name: "Loom",
-        description: "Screen recording for async communication",
-        category: "Communication",
-        link: "https://loom.com",
-        rating: 4,
-        free: true,
-        note: "Great for code reviews and demos"
-      },
-      {
-        name: "RescueTime",
-        description: "Automatic time tracking and productivity insights",
-        category: "Time Management",
-        link: "https://rescuetime.com",
-        rating: 4,
-        free: false,
-        note: "Eye-opening productivity data"
-      }
-    ]
-  }
-]
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata({
+    title: `Developer Resources - ${siteMetadata.title}`,
+    description: 'A curated collection of tools, guides, and templates for software developers.',
+    path: '/resources',
+  });
+}
 
-const guides = [
-  {
-    title: "Complete React Performance Guide",
-    description: "A comprehensive guide to optimizing React applications for scale",
-    type: "Technical Guide",
-    readTime: "25 min read",
-    downloadUrl: "/guides/react-performance.pdf",
-    topics: ["React", "Performance", "Optimization", "Best Practices"],
-    featured: true
-  },
-  {
-    title: "API Design Checklist",
-    description: "30-point checklist for designing developer-friendly APIs",
-    type: "Checklist",
-    readTime: "5 min read",
-    downloadUrl: "/guides/api-design-checklist.pdf",
-    topics: ["API", "Backend", "REST", "Design"],
-    featured: false
-  },
-  {
-    title: "Remote Team Leadership Playbook",
-    description: "Strategies and frameworks for leading distributed development teams",
-    type: "Playbook",
-    readTime: "20 min read",
-    downloadUrl: "/guides/remote-leadership.pdf",
-    topics: ["Leadership", "Remote Work", "Team Management"],
-    featured: true
-  },
-  {
-    title: "Modern CSS Layout Techniques",
-    description: "From Grid to Flexbox to Container Queries - master them all",
-    type: "Tutorial",
-    readTime: "15 min read",
-    downloadUrl: "/guides/css-layouts.pdf",
-    topics: ["CSS", "Layout", "Frontend", "Modern Web"],
-    featured: false
-  }
-]
-
-const codeTemplates = [
-  {
-    name: "Next.js SaaS Starter",
-    description: "Production-ready Next.js template with authentication, payments, and dashboard",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
-    githubUrl: "https://github.com/franciscorojas/nextjs-saas-starter",
-    demoUrl: "https://saas-demo.franciscorojas.dev",
-    stars: 847,
-    downloads: "12k+",
-    featured: true
-  },
-  {
-    name: "React Component Library",
-    description: "Reusable component library built with TypeScript and Storybook",
-    tech: ["React", "TypeScript", "Storybook", "Jest"],
-    githubUrl: "https://github.com/franciscorojas/react-components",
-    demoUrl: "https://components.franciscorojas.dev",
-    stars: 234,
-    downloads: "3.2k+",
-    featured: false
-  },
-  {
-    name: "Express API Boilerplate",
-    description: "Scalable Express.js API with authentication, validation, and testing",
-    tech: ["Express.js", "MongoDB", "JWT", "Jest"],
-    githubUrl: "https://github.com/franciscorojas/express-api-boilerplate",
-    demoUrl: "",
-    stars: 156,
-    downloads: "1.8k+",
-    featured: false
-  }
-]
-
-const learningResources = [
-  {
-    title: "My Developer Reading List",
-    description: "Books that shaped my understanding of software engineering",
-    type: "Book List",
-    items: [
-      "Clean Code by Robert Martin",
-      "System Design Interview by Alex Xu",
-      "The Pragmatic Programmer by David Thomas",
-      "Building Microservices by Sam Newman"
-    ]
-  },
-  {
-    title: "Favorite YouTube Channels",
-    description: "Channels I follow to stay updated with tech trends",
-    type: "Video Content",
-    items: [
-      "Theo - t3.gg",
-      "Web Dev Simplified",
-      "Fireship",
-      "The Primeagen"
-    ]
-  },
-  {
-    title: "Newsletter Subscriptions",
-    description: "Weekly reads that keep me informed",
-    type: "Newsletters",
-    items: [
-      "JavaScript Weekly",
-      "React Status",
-      "Node Weekly",
-      "Frontend Focus"
-    ]
-  }
-]
+// Helper to map icon names to actual components
+const IconMap: { [key: string]: React.ElementType } = {
+  CodeIcon,
+  ToolIcon,
+};
 
 export default function ResourcesPage() {
+  const toolCategories = toolCategoriesData;
+  const guides = guidesData;
+  const codeTemplates = codeTemplatesData;
+  const learningResources = learningResourcesData;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-blue-500/20 text-blue-300 border-blue-400/30">
-            🛠️ Developer Resources
-          </Badge>
-          <h1 className="text-5xl font-bold text-white mb-6">
-            Tools, Guides & Templates
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            A curated collection of tools, guides, and resources I use daily to build better software. 
-            Everything here has been battle-tested in real projects and teams.
-          </p>
-        </div>
+        <PageHeader
+          title="Tools, Guides & Templates"
+          description="A curated collection of tools, guides, and resources I use daily to build better software. Everything here has been battle-tested in real projects and teams."
+          badgeText="🛠️ Developer Resources"
+        />
 
         {/* Tools Section */}
         <section className="mb-16">
@@ -229,14 +51,16 @@ export default function ResourcesPage() {
           </h2>
           
           <div className="grid lg:grid-cols-2 gap-8">
-            {toolCategories.map((category) => (
-              <Card key={category.id} className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-3">
-                    {category.icon}
-                    {category.name}
-                  </CardTitle>
-                  <CardDescription className="text-slate-300">
+            {toolCategories.map((category) => {
+              const IconComponent = category.iconName ? IconMap[category.iconName] : null;
+              return (
+                <Card key={category.id} className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-3">
+                      {IconComponent && <IconComponent className="w-5 h-5" />}
+                      {category.name}
+                    </CardTitle>
+                    <CardDescription className="text-slate-300">
                     {category.description}
                   </CardDescription>
                 </CardHeader>
@@ -429,28 +253,20 @@ export default function ResourcesPage() {
 
         {/* CTA Section */}
         <section className="text-center">
-          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 border-0 max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <RocketIcon className="w-12 h-12 text-white mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-4">Want More Resources?</h3>
-              <p className="text-blue-100 mb-6">
-                Join my newsletter to get exclusive templates, guides, and tools delivered to your inbox weekly.
-              </p>
-              <div className="flex gap-2 max-w-md mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="your@email.com" 
-                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-                />
-                <Button variant="secondary" className="bg-white text-blue-600 hover:bg-slate-100">
-                  Subscribe
-                </Button>
-              </div>
-              <p className="text-xs text-blue-200 mt-2">No spam, unsubscribe anytime</p>
-            </CardContent>
-          </Card>
+          <NewsletterCTA
+            title="Want More Resources?"
+            description="Join my newsletter to get exclusive templates, guides, and tools delivered to your inbox weekly."
+            buttonText="Subscribe"
+            // Assuming NewsletterCTA's default card style is desired, otherwise, adjust variant and className.
+            // The input field styling in NewsletterCTA is slightly different, but acceptable for this refactor.
+            // The RocketIcon is not part of the generic NewsletterCTA, but the MailIcon is.
+            className="bg-gradient-to-r from-blue-600 to-purple-600 border-0 max-w-2xl mx-auto"
+            // To make the input and button more similar to the original:
+            // Pass custom styling through props if NewsletterCTA supports it, or accept the default.
+            // For now, I'm using the default NewsletterCTA styling.
+          />
         </section>
       </div>
     </div>
   )
-} 
+}

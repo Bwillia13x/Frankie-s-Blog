@@ -1,92 +1,28 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import React, { useMemo } from 'react'; // Import useMemo
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { CalendarIcon, MapPinIcon, UsersIcon, PlayIcon, ExternalLinkIcon, MicIcon } from "lucide-react"
 import Link from "next/link"
+import { speakingEngagements } from "../../../lib/data/speakingEngagements";
+import type { SpeakingEngagement } from "../../../types";
+import { PageHeader, SocialProof, Testimonial } from "../../components/common";
+import { generatePageMetadata } from '@/lib/seo';
+import { siteMetadata } from '@/lib/siteMetadata';
+import { Metadata } from 'next';
 
-const upcomingTalks = [
-  {
-    title: "Building Scalable React Applications at Enterprise Scale",
-    event: "ReactConf 2025",
-    date: "March 15, 2025",
-    location: "San Francisco, CA",
-    type: "Conference",
-    attendees: "2,000+",
-    description: "A deep dive into the architecture patterns and performance optimizations that help React applications serve millions of users.",
-    topics: ["React", "Performance", "Architecture", "Scaling"],
-    status: "confirmed"
-  },
-  {
-    title: "The Future of Full-Stack Development",
-    event: "TechTalk SF Meetup",
-    date: "February 20, 2025",
-    location: "San Francisco, CA",
-    type: "Meetup",
-    attendees: "150",
-    description: "Exploring emerging trends in full-stack development and how AI is changing the way we build applications.",
-    topics: ["Full-Stack", "AI", "Trends", "Future Tech"],
-    status: "confirmed"
-  }
-]
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata({
+    title: `Speaking Engagements - ${siteMetadata.title}`,
+    description: 'Discover past and upcoming speaking engagements, conferences, and workshops.',
+    path: '/speaking',
+  });
+}
 
-const pastTalks = [
-  {
-    title: "Microservices Architecture: Lessons from the Trenches",
-    event: "DevOps World 2024",
-    date: "September 12, 2024",
-    location: "Las Vegas, NV",
-    type: "Conference",
-    attendees: "3,500+",
-    description: "Real-world experiences building and scaling microservices, including common pitfalls and best practices.",
-    topics: ["Microservices", "DevOps", "Architecture", "Best Practices"],
-    videoUrl: "https://youtube.com/watch?v=example1",
-    slidesUrl: "https://slides.com/francisco/microservices-lessons",
-    rating: 4.8,
-    feedback: "Excellent practical insights with real-world examples that teams can implement immediately."
-  },
-  {
-    title: "Modern API Design Patterns",
-    event: "API World 2024",
-    date: "June 8, 2024",
-    location: "San Jose, CA",
-    type: "Conference",
-    attendees: "1,800+",
-    description: "Best practices for designing APIs that developers love, including REST, GraphQL, and emerging patterns.",
-    topics: ["API Design", "REST", "GraphQL", "Developer Experience"],
-    videoUrl: "https://youtube.com/watch?v=example2",
-    slidesUrl: "https://slides.com/francisco/api-design-patterns",
-    rating: 4.9,
-    feedback: "One of the most practical API talks I've ever attended. Clear examples and actionable advice."
-  },
-  {
-    title: "Remote Team Leadership in Tech",
-    event: "Remote Work Summit 2024",
-    date: "April 15, 2024",
-    location: "Virtual Event",
-    type: "Summit",
-    attendees: "500+",
-    description: "Strategies for building and leading high-performing remote development teams.",
-    topics: ["Remote Work", "Leadership", "Team Management", "Culture"],
-    videoUrl: "https://youtube.com/watch?v=example3",
-    slidesUrl: "https://slides.com/francisco/remote-leadership",
-    rating: 4.7,
-    feedback: "Francisco's insights on remote team dynamics were incredibly valuable for our distributed team."
-  },
-  {
-    title: "Building Your First SaaS: A Technical Deep Dive",
-    event: "Indie Hackers Meetup",
-    date: "January 10, 2024",
-    location: "San Francisco, CA",
-    type: "Meetup",
-    attendees: "80",
-    description: "Technical considerations for indie developers building their first software-as-a-service product.",
-    topics: ["SaaS", "Indie Development", "Architecture", "Startups"],
-    slidesUrl: "https://slides.com/francisco/building-first-saas",
-    rating: 4.6,
-    feedback: "Great mix of technical depth and practical business advice. Perfect for aspiring indie developers."
-  }
-]
-
+// speakingTopics remain as page-specific content for now.
 const speakingTopics = [
   {
     title: "React & Frontend Architecture",
@@ -114,8 +50,10 @@ const speakingTopics = [
   }
 ]
 
-const testimonials = [
+// Original testimonials data structure
+const pageTestimonials = [
   {
+    id: "testimonial-sarah",
     name: "Sarah Chen",
     role: "Conference Organizer",
     company: "ReactConf",
@@ -123,6 +61,7 @@ const testimonials = [
     avatar: "SC"
   },
   {
+    id: "testimonial-mike",
     name: "Mike Rodriguez",
     role: "Engineering Director",
     company: "TechCorp",
@@ -130,35 +69,50 @@ const testimonials = [
     avatar: "MR"
   },
   {
+    id: "testimonial-jennifer",
     name: "Jennifer Wu",
     role: "Developer Relations Manager",
     company: "DevTools Inc",
     content: "Francisco has a unique ability to break down complex technical concepts into actionable insights. Our developers still reference his talk months later.",
     avatar: "JW"
   }
-]
+];
 
 export default function SpeakingPage() {
+  const upcomingTalks: SpeakingEngagement[] = useMemo(() =>
+    speakingEngagements.filter(talk => talk.status === "confirmed" || talk.status === "upcoming" || talk.status === "pending"),
+    [speakingEngagements]
+  );
+  const pastTalks: SpeakingEngagement[] = useMemo(() =>
+    speakingEngagements.filter(talk => talk.status === "past"),
+    [speakingEngagements]
+  );
+
+  const transformedTestimonials: Testimonial[] = useMemo(() =>
+    pageTestimonials.map(t => ({
+      id: t.id,
+      name: t.name,
+      role: t.role,
+      company: t.company,
+      content: t.content,
+      avatar: t.avatar,
+    })),
+    [pageTestimonials] // Assuming pageTestimonials is stable (defined outside component or memoized itself if props)
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-blue-500/20 text-blue-300 border-blue-400/30">
-            🎤 Speaking Engagements
-          </Badge>
-          <h1 className="text-5xl font-bold text-white mb-6">
-            Speaking & Talks
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            I love sharing knowledge with the developer community through conference talks, 
-            meetups, and workshops. Here's where you can catch me speaking or watch my past presentations.
-          </p>
+        <PageHeader
+          title="Speaking & Talks"
+          description="I love sharing knowledge with the developer community through conference talks, meetups, and workshops. Here's where you can catch me speaking or watch my past presentations."
+          badgeText="🎤 Speaking Engagements"
+        />
           
-          {/* Speaking Stats */}
-          <div className="grid md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-1">25+</div>
+        {/* Speaking Stats - Kept separate as PageHeader doesn't handle this complex middle content currently */}
+        <div className="grid md:grid-cols-4 gap-6 mt-[-2rem] mb-16 max-w-4xl mx-auto"> {/* Adjusted margin */}
+          <div className="text-center">
+            <div className="text-3xl font-bold text-blue-400 mb-1">25+</div>
               <div className="text-sm text-slate-400">Total Talks</div>
             </div>
             <div className="text-center">
@@ -357,33 +311,13 @@ export default function SpeakingPage() {
               </CardContent>
             </Card>
 
-            {/* Testimonials */}
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">💬 What People Say</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {testimonials.map((testimonial, index) => (
-                    <div key={index} className="p-3 bg-slate-900/50 rounded-lg border border-slate-700">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                          {testimonial.avatar}
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-xs text-slate-300 mb-2 italic">"{testimonial.content}"</p>
-                          <div className="text-xs text-slate-400">
-                            <span className="font-medium text-slate-300">{testimonial.name}</span>
-                            <br />
-                            {testimonial.role} at {testimonial.company}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {/* Testimonials replaced by SocialProof component */}
+            <SocialProof
+              testimonials={transformedTestimonials}
+              title="💬 What People Say"
+              className="py-0" // Remove default py-12 for in-sidebar use
+              cardClassName="bg-slate-800/50 backdrop-blur-sm border-slate-700"
+            />
 
             {/* Resources */}
             <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">

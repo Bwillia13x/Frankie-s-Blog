@@ -1,3 +1,19 @@
+import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/seo';
+import { siteMetadata } from '@/lib/siteMetadata';
+
+export async function generateMetadata(): Promise<Metadata> {
+  // The title for the home page can be just the site title, or a specific tagline.
+  // Using siteMetadata.description for the home page description.
+  return generatePageMetadata({
+    title: siteMetadata.title, // Or a specific Home/About title like `About Me - ${siteMetadata.title}`
+    description: siteMetadata.description,
+    path: '/',
+    // Optionally, specify a unique image for the home page if different from socialBanner
+    // image: '/images/home-page-banner.png',
+  });
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen">

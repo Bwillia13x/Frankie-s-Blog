@@ -3,193 +3,75 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { UsersIcon, MessageCircleIcon, TrophyIcon, CalendarIcon, ExternalLinkIcon, HeartIcon, ShareIcon, BookOpenIcon } from "lucide-react"
 import Link from "next/link"
+import {
+  communityStatsData,
+  discussionTopicsData,
+  recentDiscussionsData,
+  upcomingEventsData,
+  successStoriesData,
+  SuccessStory as SuccessStoryType
+} from "../../../lib/data/communityData";
+import { PageHeader, StatsGrid, SocialProof, Testimonial } from "../../components/common";
+import { generatePageMetadata } from '@/lib/seo';
+import { siteMetadata } from '@/lib/siteMetadata';
+import { Metadata } from 'next';
 
-const communityStats = [
-  { label: "Active Members", value: "1,247", icon: <UsersIcon className="w-6 h-6" /> },
-  { label: "Daily Messages", value: "127", icon: <MessageCircleIcon className="w-6 h-6" /> },
-  { label: "Code Reviews", value: "89", icon: <BookOpenIcon className="w-6 h-6" /> },
-  { label: "Success Stories", value: "156", icon: <TrophyIcon className="w-6 h-6" /> }
-]
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata({
+    title: `Community - ${siteMetadata.title}`,
+    description: 'Join our developer community to connect, learn, and grow together.',
+    path: '/community',
+  });
+}
 
-const discussionTopics = [
-  {
-    title: "🚀 Show Your Work",
-    description: "Share your latest projects, get feedback, and celebrate wins",
-    memberCount: 342,
-    latestPost: "2 hours ago",
-    pinned: true
-  },
-  {
-    title: "💼 Career Discussions",
-    description: "Salary negotiations, interviews, career transitions, and growth",
-    memberCount: 567,
-    latestPost: "1 hour ago",
-    pinned: false
-  },
-  {
-    title: "🔧 Code Review Corner",
-    description: "Get your code reviewed by experienced developers",
-    memberCount: 289,
-    latestPost: "30 minutes ago",
-    pinned: false
-  },
-  {
-    title: "📚 Learning Resources",
-    description: "Share and discover the best books, courses, and tutorials",
-    memberCount: 445,
-    latestPost: "3 hours ago",
-    pinned: false
-  },
-  {
-    title: "🤝 Collaboration Hub",
-    description: "Find project partners, mentors, and team members",
-    memberCount: 234,
-    latestPost: "4 hours ago",
-    pinned: false
-  }
-]
-
-const recentDiscussions = [
-  {
-    title: "How I Got My First Senior Engineer Role",
-    author: "Sarah Chen",
-    avatar: "SC",
-    timeAgo: "2 hours ago",
-    category: "Career",
-    replies: 23,
-    likes: 67,
-    preview: "After 3 years as a mid-level developer, I finally made the jump to senior. Here's what I learned about the interview process and salary negotiation..."
-  },
-  {
-    title: "React 19 Features I'm Most Excited About",
-    author: "Alex Kim",
-    avatar: "AK",
-    timeAgo: "4 hours ago",
-    category: "Technical",
-    replies: 15,
-    likes: 42,
-    preview: "The React team has been working on some incredible improvements. Let's discuss the new features and how they'll change how we build apps..."
-  },
-  {
-    title: "My Side Project Just Hit $1K MRR!",
-    author: "Marcus Rodriguez",
-    avatar: "MR",
-    timeAgo: "6 hours ago",
-    category: "Success Story",
-    replies: 31,
-    likes: 89,
-    preview: "After 8 months of building nights and weekends, my SaaS tool finally crossed $1,000 in monthly recurring revenue. Here's the complete journey..."
-  },
-  {
-    title: "Best Practices for API Error Handling",
-    author: "Priya Patel",
-    avatar: "PP",
-    timeAgo: "1 day ago",
-    category: "Technical",
-    replies: 18,
-    likes: 34,
-    preview: "I've been thinking about standardizing error responses across our microservices. What patterns do you use for consistent error handling?"
-  }
-]
-
-const upcomingEvents = [
-  {
-    title: "Virtual Coffee Chat",
-    date: "Jan 15, 2025",
-    time: "9:00 AM PST",
-    type: "Social",
-    attendees: 23,
-    description: "Casual conversation with fellow developers over coffee"
-  },
-  {
-    title: "Code Review Session",
-    date: "Jan 17, 2025",
-    time: "6:00 PM PST",
-    type: "Learning",
-    attendees: 15,
-    description: "Live code review of community member projects"
-  },
-  {
-    title: "Career AMA with Tech Lead",
-    date: "Jan 20, 2025",
-    time: "7:00 PM PST",
-    type: "Career",
-    attendees: 67,
-    description: "Ask anything about growing from senior to staff engineer"
-  }
-]
-
-const successStories = [
-  {
-    name: "Jennifer Liu",
-    achievement: "Got promoted to Tech Lead",
-    company: "Spotify",
-    story: "The community helped me prepare for my promotion interview with mock sessions and feedback on my technical presentation.",
-    timeframe: "3 months ago"
-  },
-  {
-    name: "David Thompson",
-    achievement: "Landed dream job at startup",
-    company: "Vercel",
-    story: "Found this opportunity through a community member who referred me. The interview prep resources here were incredible.",
-    timeframe: "1 month ago"
-  },
-  {
-    name: "Lisa Wang",
-    achievement: "Launched successful side project",
-    company: "Independent",
-    story: "Built my SaaS with help from community code reviews and feedback. Now at $3K MRR and growing!",
-    timeframe: "6 months ago"
-  }
-]
+// Helper to map icon names to actual components for communityStats
+const CommunityIconMap: { [key: string]: React.ElementType } = {
+  UsersIcon,
+  MessageCircleIcon,
+  BookOpenIcon,
+  TrophyIcon,
+};
 
 export default function CommunityPage() {
+  const communityStats = communityStatsData.map(stat => ({ ...stat, id: stat.label }));
+  const discussionTopics = discussionTopicsData;
+  const recentDiscussions = recentDiscussionsData;
+  const upcomingEvents = upcomingEventsData;
+
+  const transformedSuccessStories: Testimonial[] = successStoriesData.map((story, index) => ({
+    id: index,
+    name: story.name,
+    role: story.achievement, // Using achievement as role
+    company: story.company,
+    content: story.story,
+    avatar: story.name.split(' ').map(n => n[0]).join(''), // Initials for avatar
+  }));
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-blue-500/20 text-blue-300 border-blue-400/30">
-            👥 Developer Community
-          </Badge>
-          <h1 className="text-5xl font-bold text-white mb-6">
-            Join the Developer Community
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Connect with 1,200+ developers sharing knowledge, reviewing code, and growing their careers together. 
-            From junior to senior engineers, everyone is welcome.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex gap-4 justify-center mt-8">
-            <Button asChild className="bg-blue-600 hover:bg-blue-700 px-8 py-3">
-              <Link href="https://discord.gg/francirojas-dev" target="_blank">
-                <MessageCircleIcon className="w-5 h-5 mr-2" />
-                Join Discord
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="border-slate-600 text-slate-300 hover:bg-blue-500/20 px-8 py-3">
-              <Link href="/newsletter">
-                📬 Subscribe to Newsletter
-              </Link>
-            </Button>
-          </div>
+        <PageHeader
+          title="Join the Developer Community"
+          description="Connect with 1,200+ developers sharing knowledge, reviewing code, and growing their careers together. From junior to senior engineers, everyone is welcome."
+          badgeText="👥 Developer Community"
+        />
+
+        {/* CTA Buttons - kept separate as PageHeader doesn't include generic children for this yet */}
+        <div className="flex gap-4 justify-center mt-[-2rem] mb-16"> {/* Adjusted margin due to PageHeader's own margin-bottom */}
+          <Button asChild className="bg-blue-600 hover:bg-blue-700 px-8 py-3">
+            <Link href="https://discord.gg/francirojas-dev" target="_blank">
+              <MessageCircleIcon className="w-5 h-5 mr-2" />
+              Join Discord
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="border-slate-600 text-slate-300 hover:bg-blue-500/20 px-8 py-3">
+            <Link href="/newsletter">
+              📬 Subscribe to Newsletter
+            </Link>
+          </Button>
         </div>
 
-        {/* Community Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
-          {communityStats.map((stat, index) => (
-            <Card key={index} className="bg-slate-800/50 backdrop-blur-sm border-slate-700 text-center">
-              <CardContent className="p-6">
-                <div className="text-blue-400 mb-3 flex justify-center">
-                  {stat.icon}
-                </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-slate-400 text-sm">{stat.label}</div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <StatsGrid stats={communityStats} iconMap={CommunityIconMap} />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
@@ -249,37 +131,8 @@ export default function CommunityPage() {
               </div>
             </section>
 
-            {/* Success Stories */}
-            <section>
-              <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                🏆 Success Stories
-              </h2>
-              <div className="space-y-6">
-                {successStories.map((story, index) => (
-                  <Card key={index} className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
-                          {story.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h3 className="font-semibold text-white">{story.name}</h3>
-                            <Badge className="bg-green-500/20 text-green-300 border-green-400/30">
-                              {story.achievement}
-                            </Badge>
-                          </div>
-                          <div className="text-sm text-slate-400 mb-3">
-                            {story.company} • {story.timeframe}
-                          </div>
-                          <p className="text-slate-300 text-sm italic">"{story.story}"</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
+            <SocialProof testimonials={transformedSuccessStories} title="🏆 Success Stories" />
+
           </div>
 
           {/* Sidebar */}
