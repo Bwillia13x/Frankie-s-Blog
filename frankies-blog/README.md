@@ -1,36 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Frankie's Blog
 
-## Getting Started
+A modern, fast, and SEO-friendly blog built with Next.js 14, MDX, and TailwindCSS. Features automatic deployment to GitHub Pages with CI/CD pipeline.
 
-First, run the development server:
+![Project Snapshot](https://via.placeholder.com/800x400/4f46e5/ffffff?text=Frankie%27s+Blog+Screenshot)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ⚡ Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (recommended) or npm
+
+### Development Setup
+
+1. **Clone and install dependencies**
+   ```bash
+   git clone https://github.com/Bwillia13x/Frankie-s-Blog.git
+   cd Frankie-s-Blog/frankies-blog
+   pnpm install
+   ```
+
+2. **Start development server**
+   ```bash
+   pnpm dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view your blog.
+
+3. **Create a new blog post**
+   ```bash
+   # Create a new .mdx file in content/posts/
+   touch content/posts/my-new-post.mdx
+   ```
+
+   Add frontmatter and content:
+   ```mdx
+   ---
+   title: "My New Post"
+   date: "2024-01-15"
+   summary: "A brief description of the post"
+   tags:
+     - react
+     - nextjs
+   ---
+
+   # Your blog content here
+
+   This is your **markdown** content with MDX support!
+   ```
+
+## 📁 Project Structure
+
+```
+frankies-blog/
+├── .github/workflows/     # CI/CD pipelines
+│   ├── ci.yml            # Test & lint on PRs
+│   └── deploy.yml        # Deploy to GitHub Pages
+├── __tests__/            # Jest tests
+├── content/posts/        # MDX blog posts
+├── public/              # Static assets
+├── src/
+│   ├── app/             # Next.js App Router
+│   │   ├── (posts)/[slug]/ # Dynamic post pages
+│   │   ├── layout.tsx   # Root layout
+│   │   └── page.tsx     # Homepage
+│   ├── components/      # React components
+│   │   ├── icons/       # SVG icon components
+│   │   ├── Header.tsx   # Site header
+│   │   ├── Footer.tsx   # Site footer
+│   │   └── ...          # Other components
+│   └── lib/             # Utilities & configs
+│       ├── posts.ts     # Post fetching logic
+│       └── siteMetadata.ts # Site configuration
+├── jest.config.js       # Jest configuration
+├── next.config.mjs      # Next.js configuration
+├── package.json         # Dependencies & scripts
+└── tailwind.config.ts   # TailwindCSS config
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Available Scripts
 
-You can start editing the app by modifying files in `src/app`.
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm test` - Run Jest tests
+- `pnpm format` - Format code with Prettier
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deployment
 
-## Learn More
+The blog automatically deploys to GitHub Pages when you push to the `main` branch:
 
-To learn more about Next.js, take a look at the following resources:
+1. **CI Pipeline** runs tests and linting
+2. **Deploy Pipeline** builds and exports static site to `gh-pages` branch
+3. **GitHub Pages** serves the site at `https://Bwillia13x.github.io/Frankie-s-Blog/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Site Metadata
 
-## Deploy on Vercel
+Edit `src/lib/siteMetadata.ts` to update:
+- Site title and description
+- Author information
+- Navigation links
+- Social media links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Global styles**: `src/app/globals.css`
+- **Component styles**: Using TailwindCSS classes
+- **Theme colors**: `tailwind.config.ts`
+
+### Hero Section
+
+Modify `src/components/Hero.tsx` to customize the homepage hero section.
+
+## 📝 Contributing
+
+We follow [Conventional Commits](https://conventionalcommits.org/) for commit messages:
+
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation changes
+- `style:` Code style changes
+- `refactor:` Code refactoring
+- `test:` Adding tests
+- `chore:` Build process or auxiliary tool changes
+
+### Pre-commit Hooks
+
+The project uses Husky for pre-commit hooks that automatically:
+- Run linting
+- Format code
+- Run tests
+
+## ❓ FAQ
+
+### How do I change the hero image?
+
+Update the image in `public/` directory and modify the `Hero.tsx` component to reference it.
+
+### How do I add new navigation links?
+
+Edit the `nav` array in `src/lib/siteMetadata.ts`:
+
+```typescript
+nav: [
+  { title: 'Home', href: '/' },
+  { title: 'Blog', href: '/blog' },
+  { title: 'About', href: '/about' },
+  { title: 'Contact', href: '/contact' }, // Add new link
+],
+```
+
+### How do I set up a custom domain?
+
+1. Create `public/CNAME` file with your domain:
+   ```
+   yourdomain.com
+   ```
+
+2. Configure DNS with your domain provider:
+   - Add CNAME record pointing to `username.github.io`
+
+3. Update GitHub Pages settings to use custom domain
+
+### How do I add analytics?
+
+Add your analytics script to `src/app/layout.tsx` in the `<head>` section.
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🤝 Support
+
+If you have questions or need help:
+- Open an [issue](https://github.com/Bwillia13x/Frankie-s-Blog/issues)
+- Check existing [discussions](https://github.com/Bwillia13x/Frankie-s-Blog/discussions)
+
+---
+
+Built with ❤️ using [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/), and [TailwindCSS](https://tailwindcss.com/)

@@ -1,0 +1,17 @@
+# Global ownership
+* @Bwillia13x
+
+# Blog posts should be reviewed by the content owner
+/content/posts/* @frankie-rojas
+
+# GitHub Actions workflows
+/.github/workflows/* @Bwillia13x
+
+# Configuration files
+/next.config.mjs @Bwillia13x
+/package.json @Bwillia13x
+/tailwind.config.ts @Bwillia13x
+
+# Documentation
+/README.md @Bwillia13x
+/CONTRIBUTING.md @Bwillia13x 
