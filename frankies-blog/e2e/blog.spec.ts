@@ -9,7 +9,7 @@ test.describe('Blog Page', () => {
     
     // Check for blog posts
     const articles = page.locator('article');
-    await expect(articles).toHaveCount.greaterThan(0);
+    await expect(await articles.count()).toBeGreaterThan(0);
   });
 
   test('displays blog post metadata', async ({ page }) => {
@@ -51,7 +51,7 @@ test.describe('Blog Page', () => {
       
       // Should filter posts (could be 0 or more)
       const articles = page.locator('article');
-      await expect(articles).toHaveCount.greaterThanOrEqual(0);
+      await expect(await articles.count()).toBeGreaterThanOrEqual(0);
     }
   });
 
@@ -66,7 +66,7 @@ test.describe('Blog Page', () => {
       
       // Should filter posts (could be 0 or more)
       const articles = page.locator('article');
-      await expect(articles).toHaveCount.greaterThanOrEqual(0);
+      await expect(await articles.count()).toBeGreaterThanOrEqual(0);
     }
   });
 }); 

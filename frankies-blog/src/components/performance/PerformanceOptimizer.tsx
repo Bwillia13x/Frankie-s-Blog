@@ -156,11 +156,11 @@ export function usePerformanceMetrics() {
             }
             break;
           case 'navigation':
-            const navEntry = entry as PerformanceNavigationTiming;
+            const navEntry = entry as PerformanceNavigationTiming & { navigationStart?: number };
             setMetrics(prev => ({
               ...prev,
               ttfb: navEntry.responseStart - navEntry.requestStart,
-              fcp: navEntry.domContentLoadedEventEnd - navEntry.navigationStart
+              fcp: navEntry.domContentLoadedEventEnd - (navEntry.navigationStart ?? navEntry.startTime)
             }));
             break;
         }

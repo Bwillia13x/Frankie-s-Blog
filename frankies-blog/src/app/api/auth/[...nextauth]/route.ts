@@ -44,9 +44,9 @@ const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.sub!;
-        (session.user as any).role = token.role;
+      if (token && session.user) {
+        (session.user as Record<string, unknown>).id = token.sub;
+        (session.user as Record<string, unknown>).role = token.role;
       }
       return session;
     },

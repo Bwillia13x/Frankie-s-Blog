@@ -339,7 +339,8 @@ export function usePerformanceMonitoring() {
             console.log('LCP:', entry.startTime);
           }
           if (entry.entryType === 'first-input') {
-            console.log('FID:', entry.processingStart - entry.startTime);
+            const input = entry as PerformanceEntry & { processingStart?: number };
+            console.log('FID:', (input.processingStart ?? 0) - input.startTime);
           }
           if (entry.entryType === 'layout-shift') {
             if (!(entry as any).hadRecentInput) {

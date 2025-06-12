@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-interface AnalyticsEvent {
-  type: 'page_view' | 'scroll_depth' | 'time_on_page' | 'reading_complete' | 'engagement' | 'click' | 'share';
+export interface AnalyticsEvent {
+  type: 'page_view' | 'scroll_depth' | 'time_on_page' | 'reading_complete' | 'engagement' | 'click' | 'share' | 'content-upgrade-downloaded';
   slug?: string;
   data: Record<string, any>;
   timestamp: number;
