@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,7 @@ import { ReadingTime } from "@/components/ui/reading-time";
 import { generatePageMetadata } from '@/lib/seo'; // Assuming @ is configured for src
 import { siteMetadata } from '@/lib/siteMetadata';
 import { Metadata } from 'next';
+import { SidebarDropdown } from "@/components/blog/SidebarDropdown";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
@@ -22,7 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function BlogPage() {
-  const [showSidebar, setShowSidebar] = useState(false);
   const featuredPosts: BlogPost[] = blogPosts.filter(post => post.featured);
   const regularPosts: BlogPost[] = blogPosts.filter(post => !post.featured);
 
@@ -78,70 +78,8 @@ export default function BlogPage() {
           </div>
         </div>
 
-        {/* Sidebar Dropdown Toggle */}
-        <div className="mb-8 flex justify-center">
-          <Button
-            onClick={() => setShowSidebar(!showSidebar)}
-            variant="outline"
-            className="border-slate-600 text-slate-300 hover:bg-blue-500/20 hover:border-blue-400"
-          >
-            <FilterIcon className="w-4 h-4 mr-2" />
-            Blog Info & Stats
-            <ChevronDownIcon className={`w-4 h-4 ml-2 transition-transform ${showSidebar ? 'rotate-180' : ''}`} />
-          </Button>
-        </div>
-
-        {/* Collapsible Sidebar Content */}
-        {showSidebar && (
-          <div className="mb-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <AuthorCard {...authorDetails} />
-
-            {/* Popular Tags */}
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">🏷️ Popular Topics</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {popularTags.map((tag) => (
-                    <Badge 
-                      key={tag}
-                      variant="outline" 
-                      className="cursor-pointer hover:bg-blue-500/20 border-slate-600 text-slate-300 hover:text-blue-300 hover:border-blue-400 text-xs"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Blog Stats */}
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">📈 Blog Stats</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-slate-300">Total Posts</span>
-                  <span className="text-white font-semibold">24</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-300">Total Views</span>
-                  <span className="text-white font-semibold">45,231</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-300">Subscribers</span>
-                  <span className="text-white font-semibold">2,500+</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-300">Comments</span>
-                  <span className="text-white font-semibold">892</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+        {/* Sidebar Dropdown */}
+        <SidebarDropdown authorDetails={authorDetails} popularTags={popularTags} />
 
         {/* Main Content - Centered */}
         <div className="max-w-5xl mx-auto">
