@@ -5,3 +5,4 @@ export * from './speakingEngagements';
 export * from './resources';
 export * from './communityData';
 export * from './setupItems';
+export * from './projects';

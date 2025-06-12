@@ -103,35 +103,35 @@ const upcomingTopics = [
 export default function NewsletterPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-      <div className="container mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-blue-500/20 text-blue-300 border-blue-400/30">
+        <div className="text-center mb-20">
+          <Badge variant="secondary" className="mb-6 bg-blue-500/20 text-blue-300 border-blue-400/30">
             📬 Weekly Newsletter
           </Badge>
-          <h1 className="text-5xl font-bold text-white mb-6">
+          <h1 className="text-6xl font-bold text-white mb-8">
             The Developer's Edge
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
             Join 2,500+ developers who get weekly insights on building better software, 
             scaling applications, and advancing their careers. No spam, just value.
           </p>
           
           {/* Newsletter Signup Form */}
-          <Card className="max-w-md mx-auto bg-slate-800/50 backdrop-blur-sm border-slate-700">
-            <CardContent className="p-6">
-              <div className="flex flex-col gap-3">
+          <Card className="max-w-lg mx-auto bg-slate-800/50 backdrop-blur-sm border-slate-700">
+            <CardContent className="p-8">
+              <div className="flex flex-col gap-4">
                 <input 
                   type="email" 
                   placeholder="your@email.com" 
-                  className="px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-6 py-4 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-700 py-3">
-                  <MailIcon className="w-4 h-4 mr-2" />
+                <Button className="bg-blue-600 hover:bg-blue-700 py-4 text-lg">
+                  <MailIcon className="w-5 h-5 mr-2" />
                   Subscribe Free
                 </Button>
               </div>
-              <p className="text-xs text-slate-400 mt-3 text-center">
+              <p className="text-sm text-slate-400 mt-4 text-center">
                 Unsubscribe anytime. Your email is safe with me.
               </p>
             </CardContent>
@@ -139,23 +139,23 @@ export default function NewsletterPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-4 gap-8 mb-20 max-w-5xl mx-auto">
           {newsletterStats.map((stat, index) => (
             <Card key={index} className="bg-slate-800/50 backdrop-blur-sm border-slate-700 text-center">
-              <CardContent className="p-6">
-                <div className="text-blue-400 mb-2 flex justify-center">
+              <CardContent className="p-8">
+                <div className="text-blue-400 mb-4 flex justify-center">
                   {stat.icon}
                 </div>
-                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-slate-400 text-sm">{stat.label}</div>
+                <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-slate-400">{stat.label}</div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-16">
             {/* Recent Issues */}
             <section>
               <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
@@ -345,26 +345,26 @@ export default function NewsletterPage() {
         </div>
 
         {/* Final CTA */}
-        <section className="mt-16 text-center">
-          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700 max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <TrendingUpIcon className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-4">Ready to Level Up?</h3>
-              <p className="text-slate-300 mb-6">
+        <section className="mt-24 text-center">
+          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700 max-w-3xl mx-auto">
+            <CardContent className="p-12">
+              <TrendingUpIcon className="w-16 h-16 text-blue-400 mx-auto mb-6" />
+              <h3 className="text-3xl font-bold text-white mb-6">Ready to Level Up?</h3>
+              <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
                 Join thousands of developers who rely on The Developer's Edge for weekly insights, 
                 practical tips, and career advice. Start getting smarter about software development.
               </p>
-              <div className="flex gap-2 max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                 <input 
                   type="email" 
                   placeholder="your@email.com" 
-                  className="flex-1 px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-6 py-4 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-700 px-6">
+                <Button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 text-lg">
                   Subscribe
                 </Button>
               </div>
-              <p className="text-xs text-slate-400 mt-3">
+              <p className="text-sm text-slate-400 mt-4">
                 Free forever. No spam. Unsubscribe with one click.
               </p>
             </CardContent>

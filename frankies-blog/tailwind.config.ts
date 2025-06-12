@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,13 +14,13 @@ const config: Config = {
         display: ['Newsreader', 'serif'],
       },
       colors: {
-        background: '#111b22',
-        foreground: '#ffffff',
-        border: '#243947',
-        accent: '#1993e5',
-        muted: '#93b3c8',
-        'accent-hover': '#0d7cbf',
-        'muted-dark': '#6b8ca1',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
+        accent: 'hsl(var(--accent))',
+        muted: 'hsl(var(--muted))',
+        'accent-hover': 'hsl(var(--accent-hover))',
+        'muted-dark': 'hsl(var(--muted-dark))',
       },
       spacing: {
         '18': '4.5rem',

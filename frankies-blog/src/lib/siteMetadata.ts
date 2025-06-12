@@ -1,10 +1,21 @@
 export const siteMetadata = {
-  title: "Francisco Rojas",
-  author: 'Francisco Rojas',
-  description: 'A passionate software engineer with expertise in full-stack development, cloud technologies, and building scalable applications that solve real-world problems.',
-  siteUrl: 'https://www.frankies.blog', // Placeholder URL, replace with actual
-  socialBanner: '/images/social-banner.png', // Placeholder global social banner image
-  twitterHandle: '@frankie_rojas', // Extracted from social.twitter
+  title: "Frankie's Blog",
+  description: "A modern blog about web development, React, Next.js, and programming insights",
+  author: "Frankie",
+  siteUrl: "https://frankies-blog.vercel.app", // Replace with your actual domain
+  language: "en-us",
+  locale: "en_US",
+  socialBanner: "/images/og-default.png", // For backward compatibility
+  twitterHandle: "@frankiesblog", // For backward compatibility
+  
+  social: {
+    twitter: "@frankiesblog", // Replace with actual handle
+    github: "frankiesblog", // Replace with actual username
+    linkedin: "frankiesblog", // Replace with actual username
+    email: "hello@frankiesblog.com" // Replace with actual email
+  },
+
+  // Navigation for backward compatibility
   nav: [
     { title: 'About', href: '/' },
     { title: 'Projects', href: '/projects' },
@@ -16,11 +27,27 @@ export const siteMetadata = {
     { title: 'Newsletter', href: '/newsletter' },
     { title: 'Contact', href: '/contact' },
   ],
-  social: {
-    twitter: 'https://twitter.com/frankie_rojas',
-    github: 'https://github.com/frankie-rojas',
-    linkedin: 'https://linkedin.com/in/francisco-rojas',
+
+  // SEO defaults
+  defaultOgImage: "/images/og-default.png",
+  favicon: "/favicon.ico",
+  
+  // Analytics
+  googleAnalyticsId: "", // Add your GA ID
+  googleSiteVerification: "", // Add your GSC verification
+  
+  // RSS
+  rss: {
+    title: "Frankie's Blog RSS Feed",
+    description: "Latest articles about web development and programming"
   },
-} as const;
+
+  // Theme
+  defaultTheme: "dark",
+  
+  // Blog settings
+  postsPerPage: 10,
+  maxRecentPosts: 5
+};
 
 export type SiteMetadata = typeof siteMetadata;

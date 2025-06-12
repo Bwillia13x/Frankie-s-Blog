@@ -26,19 +26,35 @@ export interface ProcessedMDX {
 
 // Simple markdown to HTML processor
 function processMarkdownContent(content: string): string {
+  // Function to create URL-friendly IDs from text
+  const createHeadingId = (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+  };
+
   // Basic markdown processing that works reliably
   return content
     .split('\n')
     .map(line => {
-      // Headers
+      // Headers with auto-generated IDs
       if (line.startsWith('### ')) {
-        return `<h3 class="heading-3">${line.substring(4)}</h3>`;
+        const text = line.substring(4);
+        const id = createHeadingId(text);
+        return `<h3 id="${id}" class="heading-3">${text}</h3>`;
       }
       if (line.startsWith('## ')) {
-        return `<h2 class="heading-2">${line.substring(3)}</h2>`;
+        const text = line.substring(3);
+        const id = createHeadingId(text);
+        return `<h2 id="${id}" class="heading-2">${text}</h2>`;
       }
       if (line.startsWith('# ')) {
-        return `<h1 class="heading-1">${line.substring(2)}</h1>`;
+        const text = line.substring(2);
+        const id = createHeadingId(text);
+        return `<h1 id="${id}" class="heading-1">${text}</h1>`;
       }
       
       // Code blocks

@@ -6,8 +6,18 @@ import { CalendarIcon, ClockIcon, EyeIcon, HeartIcon, MessageCircleIcon, ShareIc
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getBlogPost, getAllBlogSlugs } from "@/lib/mdx";
+import { getBlogPosts } from "@/lib/data/blogPosts";
 import type { BlogPost } from "@/types";
 import { PageHeader, EngagementMetrics, AuthorCard, NewsletterCTA } from "@/components/common";
+import { TableOfContents } from "@/components/ui/table-of-contents";
+import { ReadingTime } from "@/components/ui/reading-time";
+import { RelatedArticles, RelatedArticlesSidebar } from "@/components/ui/related-articles";
+import { SocialShare } from "@/components/ui/social-share";
+import { CircularReadingProgress } from "@/components/ui/reading-progress";
+import { CommentsFallback } from "@/components/ui/comments";
+import { BookmarkButton } from "@/components/ui/bookmark-system";
+import { ReadingAnalytics } from "@/components/ui/analytics-tracker";
+import { ContentUpgrade, contentUpgrades } from "@/components/ui/content-upgrades";
 import { generatePageMetadata as generatePageSeoMetadata } from '@/lib/seo';
 import { siteMetadata } from '@/lib/siteMetadata';
 import { Metadata } from 'next';
@@ -47,13 +57,29 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPost(params.slug);
+  const allPosts = getBlogPosts();
 
   if (!post) {
     notFound();
   }
 
+  // Find relevant content upgrade based on post tags/category
+  const relevantUpgrade = contentUpgrades.find(upgrade => 
+    upgrade.tags.some(tag => post.tags.includes(tag)) ||
+    upgrade.title.toLowerCase().includes(post.category.toLowerCase())
+  ) || contentUpgrades[0]; // Fallback to first upgrade
+
   return (
     <div className="min-h-screen bg-[#111b22]">
+      {/* Analytics Tracking */}
+      <ReadingAnalytics 
+        slug={post.slug}
+        title={post.title}
+        category={post.category}
+        tags={post.tags}
+        contentLength={post.content.length}
+      />
+      
       <div className="container mx-auto px-4 py-12">
         {/* Back Navigation */}
         <div className="mb-8">
@@ -63,8 +89,11 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Article Header */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              {/* Article Header */}
           <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 mb-8">
             <div className="p-8 border-b border-slate-700">
               <div className="mb-4">
@@ -97,10 +126,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                     day: 'numeric' 
                   })}
                 </span>
-                <span className="flex items-center gap-1">
-                  <ClockIcon className="w-4 h-4" />
-                  {post.readTime}
-                </span>
+                <ReadingTime content={post.content} />
               </div>
 
               <EngagementMetrics 
@@ -121,23 +147,38 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             {/* Action Buttons */}
-            <div className="p-6 flex flex-wrap gap-4">
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
-                <HeartIcon className="w-4 h-4 mr-2" />
-                Like ({post.likes})
-              </Button>
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
-                <MessageCircleIcon className="w-4 h-4 mr-2" />
-                Comment ({post.comments})
-              </Button>
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
-                <ShareIcon className="w-4 h-4 mr-2" />
-                Share
-              </Button>
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
-                <BookmarkIcon className="w-4 h-4 mr-2" />
-                Save
-              </Button>
+            <div className="p-6 flex flex-wrap gap-4 items-center justify-between">
+              <div className="flex gap-4">
+                <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
+                  <HeartIcon className="w-4 h-4 mr-2" />
+                  Like ({post.likes})
+                </Button>
+                <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
+                  <MessageCircleIcon className="w-4 h-4 mr-2" />
+                  Comment ({post.comments})
+                </Button>
+                <BookmarkButton 
+                  post={{
+                    slug: post.slug,
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    content: post.content,
+                    category: post.category,
+                    tags: post.tags,
+                    publishedAt: post.publishedAt
+                  }}
+                  size="sm"
+                  showLabel={true}
+                />
+              </div>
+              <SocialShare 
+                title={post.title}
+                url={`${siteMetadata.siteUrl}/blog/${post.slug}`}
+                description={post.excerpt}
+                hashtags={post.tags}
+                size="sm"
+                variant="dropdown"
+              />
             </div>
           </Card>
 
@@ -162,8 +203,19 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   prose-a:text-blue-400 prose-a:underline hover:prose-a:text-blue-300 prose-a:transition-colors prose-a:duration-200
                   prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:my-6 
                   prose-blockquote:italic prose-blockquote:text-slate-300 prose-blockquote:bg-slate-800/50 prose-blockquote:py-2"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              >
+                {/* Split content to insert upgrade in the middle */}
+                <div dangerouslySetInnerHTML={{ __html: post.content.substring(0, Math.floor(post.content.length / 2)) }} />
+                
+                {/* Content Upgrade */}
+                <ContentUpgrade 
+                  upgrade={relevantUpgrade}
+                  variant="inline"
+                  className="not-prose"
+                />
+                
+                <div dangerouslySetInnerHTML={{ __html: post.content.substring(Math.floor(post.content.length / 2)) }} />
+              </div>
             </CardContent>
           </Card>
 
@@ -183,13 +235,50 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             />
           </div>
 
-          {/* Newsletter CTA */}
-          <NewsletterCTA 
-            variant="card"
-            title="📬 Never Miss a Post"
-            description="Subscribe to get the latest posts delivered straight to your inbox."
-            className="mb-8"
-          />
+              {/* Related Articles */}
+              <RelatedArticles 
+                currentPost={post}
+                allPosts={allPosts}
+                className="mb-8"
+              />
+
+              {/* Comments Section */}
+              <CommentsFallback 
+                commentCount={post.comments}
+                className="mb-8"
+              />
+
+              {/* Newsletter CTA */}
+              <NewsletterCTA 
+                variant="card"
+                title="📬 Never Miss a Post"
+                description="Subscribe to get the latest posts delivered straight to your inbox."
+                className="mb-8"
+              />
+            </div>
+            
+            {/* Sidebar with Table of Contents */}
+            <div className="lg:col-span-1 space-y-6">
+              <div className="sticky top-24">
+                <div className="flex items-center gap-4 mb-6">
+                  <CircularReadingProgress size={50} />
+                  <span className="text-slate-300 text-sm">Reading Progress</span>
+                </div>
+                <TableOfContents content={post.content} className="mb-6" />
+                <RelatedArticlesSidebar 
+                  currentPost={post}
+                  allPosts={allPosts}
+                  maxRelated={3}
+                  className="mb-6"
+                />
+                
+                <ContentUpgrade 
+                  upgrade={relevantUpgrade}
+                  variant="sidebar"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
