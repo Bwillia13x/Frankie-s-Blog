@@ -18,28 +18,33 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        run_install: false
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: frankies-blog/package-lock.json
+        cache: 'pnpm'
+        cache-dependency-path: frankies-blog/pnpm-lock.yaml
         
     - name: Install dependencies
       working-directory: ./frankies-blog
-      run: npm ci
+      run: pnpm install --frozen-lockfile
       
     - name: Run linter
       working-directory: ./frankies-blog
-      run: npm run lint
+      run: pnpm lint
       
     - name: Run type checking
       working-directory: ./frankies-blog
-      run: npm run type-check
+      run: pnpm type-check
       
     - name: Run tests
       working-directory: ./frankies-blog
-      run: npm test -- --coverage --watchAll=false
+      run: pnpm test -- --coverage --watchAll=false
       
     - name: Upload coverage reports
       if: matrix.node-version == '20.x'
@@ -51,11 +56,11 @@ jobs:
         
     - name: Build application
       working-directory: ./frankies-blog
-      run: npm run build
+      run: pnpm build
       
     - name: Run build analysis
       working-directory: ./frankies-blog
-      run: npm run analyze
+      run: pnpm analyze
       
   security:
     runs-on: ubuntu-latest

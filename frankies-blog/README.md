@@ -11,7 +11,7 @@ A modern, fast, and SEO-friendly blog built with Next.js 14, MDX, and TailwindCS
 - Node.js 18+ 
 - pnpm (recommended) or npm
 
-### Development Setup
+### Development
 
 1. **Clone and install dependencies**
    ```bash
@@ -85,6 +85,12 @@ frankies-blog/
 - `pnpm lint` - Run ESLint
 - `pnpm test` - Run Jest tests
 - `pnpm format` - Format code with Prettier
+
+## ✅ Testing
+
+- `pnpm test` - Run unit tests
+- `pnpm test:e2e` - Run Playwright tests
+- `pnpm test:all` - Run all tests
 
 ## 🚀 Deployment
 

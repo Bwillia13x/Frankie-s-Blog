@@ -3,7 +3,8 @@
 
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom' 
+import '@testing-library/jest-dom'
+globalThis.Request = global.Request
 
 // Mock Next.js router
 jest.mock('next/navigation', () => ({

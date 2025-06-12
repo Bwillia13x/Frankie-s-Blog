@@ -231,19 +231,49 @@ export function ClickTracker({
 
 // Hook for manual event tracking
 export function useAnalytics() {
+  const buffer = useRef<AnalyticsEvent[]>([]);
+  const writeTimer = useRef<NodeJS.Timeout>();
+  const flushTimer = useRef<NodeJS.Timeout>();
+
+  const flushBuffer = async () => {
+    if (buffer.current.length === 0) return;
+    const events = buffer.current.splice(0, buffer.current.length);
+    try {
+      const res = await fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ events }),
+      });
+      if (res.status === 429) {
+        buffer.current.unshift(...events);
+      }
+    } catch {
+      buffer.current.unshift(...events);
+    }
+  };
+
+  const scheduleFlush = () => {
+    if (flushTimer.current) return;
+    flushTimer.current = setTimeout(async () => {
+      await flushBuffer();
+      flushTimer.current = undefined;
+    }, 1000);
+  };
+
+  const scheduleWrite = () => {
+    if (writeTimer.current) return;
+    writeTimer.current = setTimeout(() => {
+      const existing = JSON.parse(localStorage.getItem('blog-analytics') || '[]');
+      localStorage.setItem('blog-analytics', JSON.stringify([...existing, ...buffer.current]));
+      writeTimer.current = undefined;
+    }, 500);
+  };
+
   const sendEvent = (event: Omit<AnalyticsEvent, 'timestamp'>) => {
-    const fullEvent: AnalyticsEvent = {
-      ...event,
-      timestamp: Date.now()
-    };
-    
-    // Store in localStorage for now (in production, send to analytics service)
-    const existingEvents = JSON.parse(localStorage.getItem('blog-analytics') || '[]');
-    existingEvents.push(fullEvent);
-    localStorage.setItem('blog-analytics', JSON.stringify(existingEvents));
-    
-    // Console log for development
-    console.log('Analytics Event:', fullEvent);
+    const fullEvent: AnalyticsEvent = { ...event, timestamp: Date.now() };
+    buffer.current.push(fullEvent);
+    scheduleWrite();
+    scheduleFlush();
   };
 
   const trackShare = (platform: string, url: string, title: string) => {
@@ -275,6 +305,20 @@ export function useAnalytics() {
   const clearAnalyticsData = () => {
     localStorage.removeItem('blog-analytics');
   };
+
+  useEffect(() => {
+    return () => {
+      if (flushTimer.current) {
+        clearTimeout(flushTimer.current);
+        flushTimer.current = undefined;
+      }
+      if (writeTimer.current) {
+        clearTimeout(writeTimer.current);
+        writeTimer.current = undefined;
+      }
+      flushBuffer();
+    };
+  }, []);
 
   return {
     sendEvent,
