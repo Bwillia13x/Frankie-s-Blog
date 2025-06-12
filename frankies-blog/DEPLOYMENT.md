@@ -82,37 +82,6 @@ Vercel is the platform made by Next.js creators and offers the best experience f
 - ✅ Edge network distribution
 - ✅ Security headers configured
 
-## Alternative: Netlify Deployment
-
-If you prefer Netlify:
-
-1. **Connect Repository**
-   - Go to [netlify.com](https://netlify.com)
-   - "New site from Git" → Choose GitHub
-   - Select `Bwillia13x/Frankie-s-Blog`
-
-2. **Build Settings**
-   ```bash
-   Base directory: frankies-blog
-   Build command: STATIC_EXPORT=true pnpm build
-   Publish directory: frankies-blog/out
-   ```
-
-3. **Environment Variables**
-   ```bash
-   NODE_ENV=production
-   STATIC_EXPORT=true
-   ```
-
-## Alternative: GitHub Pages (Already Configured)
-
-Your project already has GitHub Pages deployment configured via GitHub Actions. To use it:
-
-1. Go to repository Settings → Pages
-2. Source: "Deploy from a branch"
-3. Branch: `gh-pages`
-4. Every push to main triggers automatic deployment
-
 ## 📊 Next Steps After Deployment
 
 1. **Test All Pages**: Visit each route to ensure everything works

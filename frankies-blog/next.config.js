@@ -76,25 +76,21 @@ const nextConfig = {
           },
           {
             key: 'X-XSS-Protection',
-            value: '1; mode=block'
+            value: '1; mode=block' // Kept (present in both, consolidated here)
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            value: 'DENY' // Changed from SAMEORIGIN to DENY (more secure, from vercel.json)
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            value: 'nosniff' // Kept (present in both, consolidated here, removed duplicate)
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
+            value: 'strict-origin-when-cross-origin' // Changed (more secure, from vercel.json)
           },
-          // Performance headers
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
+          // Note: Removed duplicate X-Content-Type-Options from here
         ],
       },
       // Cache static assets

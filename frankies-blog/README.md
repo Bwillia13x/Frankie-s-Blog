@@ -1,6 +1,6 @@
 # 🚀 Frankie's Blog
 
-A modern, fast, and SEO-friendly blog built with Next.js 14, MDX, and TailwindCSS. Features automatic deployment to GitHub Pages with CI/CD pipeline.
+A modern, fast, and SEO-friendly blog built with Next.js 14, MDX, and TailwindCSS.
 
 ![Project Snapshot](https://via.placeholder.com/800x400/4f46e5/ffffff?text=Frankie%27s+Blog+Screenshot)
 
@@ -54,7 +54,6 @@ A modern, fast, and SEO-friendly blog built with Next.js 14, MDX, and TailwindCS
 frankies-blog/
 ├── .github/workflows/     # CI/CD pipelines
 │   ├── ci.yml            # Test & lint on PRs
-│   └── deploy.yml        # Deploy to GitHub Pages
 ├── __tests__/            # Jest tests
 ├── content/posts/        # MDX blog posts
 ├── public/              # Static assets
@@ -85,14 +84,6 @@ frankies-blog/
 - `pnpm lint` - Run ESLint
 - `pnpm test` - Run Jest tests
 - `pnpm format` - Format code with Prettier
-
-## 🚀 Deployment
-
-The blog automatically deploys to GitHub Pages when you push to the `main` branch:
-
-1. **CI Pipeline** runs tests and linting
-2. **Deploy Pipeline** builds and exports static site to `gh-pages` branch
-3. **GitHub Pages** serves the site at `https://Bwillia13x.github.io/Frankie-s-Blog/`
 
 ## 🎨 Customization
 
@@ -151,18 +142,6 @@ nav: [
   { title: 'Contact', href: '/contact' }, // Add new link
 ],
 ```
-
-### How do I set up a custom domain?
-
-1. Create `public/CNAME` file with your domain:
-   ```
-   yourdomain.com
-   ```
-
-2. Configure DNS with your domain provider:
-   - Add CNAME record pointing to `username.github.io`
-
-3. Update GitHub Pages settings to use custom domain
 
 ### How do I add analytics?
 
