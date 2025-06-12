@@ -18,7 +18,7 @@ const PageHeaderComponent: React.FC<PageHeaderProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`text-center mb-16 ${className}`}>
+    <div data-testid="page-header" className={`text-center mb-16 ${className}`}>
       {badgeText && (
         <Badge variant={badgeVariant} className="mb-4 bg-blue-500/20 text-blue-300 border-blue-400/30">
           {badgeText}
@@ -28,7 +28,7 @@ const PageHeaderComponent: React.FC<PageHeaderProps> = ({
         {title}
       </h1>
       {typeof description === 'string' ? (
-        <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        <p data-testid="page-header-description" className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
           {description}
         </p>
       ) : (

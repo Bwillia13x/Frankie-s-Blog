@@ -70,7 +70,7 @@ console.log('hello world');
         likes: 10,
         comments: 5,
       })
-      expect(posts[0].content).toContain('<h1 class="heading-1">Test Content</h1>')
+      expect(posts[0].content).toContain('<h1 id="test-content" class="heading-1">Test Content</h1>')
       expect(posts[0].content).toContain('<strong>bold</strong>')
       expect(posts[0].content).toContain('<em>italic</em>')
     })

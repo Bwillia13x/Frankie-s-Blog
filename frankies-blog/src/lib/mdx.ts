@@ -36,8 +36,9 @@ function processMarkdownContent(content: string): string {
       .trim();
   };
 
-  // Basic markdown processing that works reliably
+  // Trim leading/trailing whitespace to avoid extraneous line breaks
   return content
+    .trim()
     .split('\n')
     .map(line => {
       // Headers with auto-generated IDs
@@ -70,9 +71,9 @@ function processMarkdownContent(content: string): string {
         return `<li>${line.replace(/^\d+\. /, '')}</li>`;
       }
       
-      // Empty lines
+      // Ignore empty lines to avoid injecting <br> tags
       if (line.trim() === '') {
-        return '<br />';
+        return '';
       }
       
       // Regular paragraphs
