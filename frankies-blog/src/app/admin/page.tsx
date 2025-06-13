@@ -24,7 +24,7 @@ export default function AdminPage() {
   // Check if user has admin privileges
   // This would typically check against a database or API
   const isAdmin = session?.user?.email === 'admin@frankiesblog.com' || 
-                  session?.user?.role === 'admin';
+                  (session?.user as { role?: string })?.role === 'admin';
 
   if (!isAdmin) {
     return (

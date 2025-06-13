@@ -160,7 +160,7 @@ export function usePerformanceMetrics() {
             setMetrics(prev => ({
               ...prev,
               ttfb: navEntry.responseStart - navEntry.requestStart,
-              fcp: navEntry.domContentLoadedEventEnd - navEntry.navigationStart
+              fcp: navEntry.domContentLoadedEventEnd - navEntry.startTime
             }));
             break;
         }

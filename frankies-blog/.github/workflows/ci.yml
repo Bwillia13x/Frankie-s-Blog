@@ -62,6 +62,11 @@ jobs:
       working-directory: ./frankies-blog
       run: pnpm analyze
       
+    - name: Run e2e tests
+      uses: microsoft/playwright-github-action@v1
+      with:
+        command: pnpm --filter ./frankies-blog test:e2e
+
   security:
     runs-on: ubuntu-latest
     steps:

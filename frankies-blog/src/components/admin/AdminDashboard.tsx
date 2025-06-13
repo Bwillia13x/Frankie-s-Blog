@@ -56,21 +56,21 @@ export function AdminDashboard() {
     
     // Process analytics data into dashboard metrics
     const processedMetrics: DashboardMetrics = {
-      totalViews: analyticsData.filter(e => e.type === 'page_view').length,
+      totalViews: analyticsData.filter((e: any) => e.type === 'page_view').length,
       totalPosts: 25, // This would come from your content management system
       totalSubscribers: 2847,
       avgReadingTime: analyticsData
-        .filter(e => e.type === 'time_on_page')
-        .reduce((acc, e) => acc + (e.data.readingTime || 0), 0) / 
-        analyticsData.filter(e => e.type === 'time_on_page').length || 0,
-      completionRate: (analyticsData.filter(e => e.type === 'reading_complete').length / 
-        analyticsData.filter(e => e.type === 'page_view').length) * 100 || 0,
+        .filter((e: any) => e.type === 'time_on_page')
+        .reduce((acc: number, e: any) => acc + (e.data.readingTime || 0), 0) / 
+        analyticsData.filter((e: any) => e.type === 'time_on_page').length || 0,
+      completionRate: (analyticsData.filter((e: any) => e.type === 'reading_complete').length / 
+        analyticsData.filter((e: any) => e.type === 'page_view').length) * 100 || 0,
       topPosts: [
         { slug: 'react-performance-optimization', title: 'React Performance Optimization', views: 1250, completionRate: 78 },
         { slug: 'nextjs-deployment-guide', title: 'Next.js Deployment Guide', views: 890, completionRate: 82 },
         { slug: 'typescript-best-practices', title: 'TypeScript Best Practices', views: 745, completionRate: 75 }
       ],
-      recentActivity: analyticsData.slice(-10).map(event => ({
+      recentActivity: analyticsData.slice(-10).map((event: any) => ({
         type: event.type,
         description: getActivityDescription(event),
         timestamp: event.timestamp

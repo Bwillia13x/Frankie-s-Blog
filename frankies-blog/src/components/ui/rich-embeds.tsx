@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Script from 'next/script';
 import { Play, ExternalLink, Code, Twitter, Github, Calendar, Clock } from 'lucide-react';
 import { Card, CardContent } from './card';
 import { Button } from './button';
@@ -251,7 +252,7 @@ export function GitHubGistEmbed({
               </div>
             </div>
           ) : (
-            <script src={embedUrl}></script>
+            <Script src={embedUrl} strategy="lazyOnload" />
           )}
         </div>
       </Card>

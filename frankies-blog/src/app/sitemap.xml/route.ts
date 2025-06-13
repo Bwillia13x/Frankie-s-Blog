@@ -3,9 +3,10 @@ import { getBlogPosts } from '@/lib/data/blogPosts';
 import { siteMetadata } from '@/lib/siteMetadata';
 
 export async function GET(request: NextRequest) {
-  const blogPosts = getBlogPosts();
+  const blogPosts = getBlogPosts() ?? [];
   
-  const baseUrl = siteMetadata.siteUrl;
+  // Prefer explicit siteUrl from metadata, otherwise use env var or empty string
+  const baseUrl = siteMetadata.siteUrl || process.env.NEXT_PUBLIC_SITE_URL || '';
   const currentDate = new Date().toISOString();
 
   // Static pages
@@ -80,22 +81,30 @@ export async function GET(request: NextRequest) {
     priority: '0.8'
   }));
 
-  // Category pages
-  const categories = Array.from(new Set(blogPosts.map(post => post.category)));
+  // Category pages - filter undefined/null
+  const categories = Array.from(
+    new Set(blogPosts.map(post => post.category).filter((c): c is string => Boolean(c)))
+  );
   const categoryPages = categories.map(category => ({
     url: `/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`,
     lastModified: currentDate,
     changeFreq: 'weekly',
-    priority: '0.6'
+    priority: '0.6',
   }));
 
-  // Tag pages
-  const allTags = Array.from(new Set(blogPosts.flatMap(post => post.tags)));
+  // Tag pages - handle missing tags arrays or undefined tag values
+  const allTags = Array.from(
+    new Set(
+      blogPosts
+        .flatMap(post => (post.tags ?? []))
+        .filter((tag): tag is string => Boolean(tag))
+    )
+  );
   const tagPages = allTags.map(tag => ({
     url: `/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`,
     lastModified: currentDate,
     changeFreq: 'weekly',
-    priority: '0.5'
+    priority: '0.5',
   }));
 
   const allPages = [...staticPages, ...blogPages, ...categoryPages, ...tagPages];

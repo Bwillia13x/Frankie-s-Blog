@@ -1,0 +1,111 @@
+# Page snapshot
+
+```yaml
+- text: "Memory: 68.9MB / 73.1MB 94.3%"
+- heading "Bundle Info" [level=4]
+- text: "Total: 1.2MB Gzipped: 0.4MB main: 0.3MB vendor: 0.6MB runtime: 0.1MB async-components: 0.2MB"
+- banner:
+  - img
+  - link "Frankie's Blog":
+    - /url: /
+    - heading "Frankie's Blog" [level=1]
+  - button:
+    - img
+  - button "Open Menu":
+    - img
+- main:
+  - img
+  - text: Software Engineer
+  - heading "Hi, I'm Francisco" [level=1]
+  - paragraph: A passionate software engineer with expertise in full-stack development, cloud technologies, and building scalable applications that solve real-world problems.
+  - link "View My Work":
+    - /url: /projects
+  - link "Read My Blog":
+    - /url: /blog
+  - link "Get In Touch":
+    - /url: /contact
+  - img
+  - text: About Me
+  - heading "Crafting Digital Experiences" [level=2]
+  - paragraph: I'm a dedicated software engineer with over 5 years of experience building web applications and distributed systems. My journey in technology started with a curiosity about how things work, which led me to pursue computer science and develop a deep passion for creating elegant solutions to complex problems.
+  - paragraph: When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through writing and mentoring.
+  - text: 5+ Years Experience 100K+ Users Served
+  - img
+  - heading "Fast & Efficient" [level=3]
+  - paragraph: Optimized for performance
+  - img
+  - heading "Secure & Reliable" [level=3]
+  - paragraph: Enterprise-grade security
+  - img
+  - heading "Responsive Design" [level=3]
+  - paragraph: Works on any device
+  - img
+  - text: Professional Journey
+  - heading "Work Experience" [level=2]
+  - heading "Senior Software Engineer" [level=3]
+  - paragraph: TechCorp Inc.
+  - text: 2022 - Present
+  - paragraph: Lead development of microservices architecture serving 100K+ users daily. Implemented CI/CD pipelines and mentored junior developers in modern development practices.
+  - text: Microservices AWS Docker Team Leadership
+  - heading "Full Stack Developer" [level=3]
+  - paragraph: StartupXYZ
+  - text: 2020 - 2022
+  - paragraph: Built responsive web applications using React, Node.js, and PostgreSQL. Collaborated with design team to implement pixel-perfect UIs and optimize user experience.
+  - text: React Node.js PostgreSQL UI/UX
+  - img
+  - text: Academic Background
+  - heading "Education" [level=2]
+  - heading "Bachelor of Science in Computer Science" [level=3]
+  - paragraph: University of Technology
+  - text: 2016 - 2020
+  - paragraph: Graduated Magna Cum Laude with specialization in Software Engineering and Database Systems. Active in computer science club and hackathon competitions.
+  - text: 3.8 GPA Magna Cum Laude Honor CS Club President
+  - img
+  - text: Technical Expertise
+  - heading "Skills & Technologies" [level=2]
+  - img
+  - heading "Frontend" [level=3]
+  - text: React Next.js TypeScript Tailwind CSS
+  - img
+  - heading "Backend" [level=3]
+  - text: Node.js Python PostgreSQL MongoDB
+  - img
+  - heading "Cloud & DevOps" [level=3]
+  - text: AWS Docker Kubernetes CI/CD
+  - img
+  - text: Beyond Code
+  - heading "Interests & Passions" [level=2]
+  - img
+  - heading "Open Source" [level=3]
+  - paragraph: Contributing to community projects and sharing knowledge through code.
+  - img
+  - heading "Learning" [level=3]
+  - paragraph: Always exploring new technologies and keeping up with industry trends.
+  - img
+  - heading "Mentoring" [level=3]
+  - paragraph: Helping junior developers grow their skills and advance their careers.
+  - img
+  - heading "Travel" [level=3]
+  - paragraph: Exploring different cultures and gaining new perspectives around the world.
+  - heading "Let's Work Together" [level=3]
+  - paragraph: I'm always interested in hearing about new opportunities and interesting projects. Let's discuss how we can bring your ideas to life.
+  - link "Get In Touch":
+    - /url: /contact
+  - link "View Projects":
+    - /url: /projects
+- contentinfo:
+  - contentinfo:
+    - link "Newsletter":
+      - /url: "#"
+    - link:
+      - /url: "@frankiesblog"
+      - img
+    - link:
+      - /url: frankiesblog
+      - img
+    - link:
+      - /url: frankiesblog
+      - img
+    - paragraph: © 2024 Frankie. All rights reserved.
+- alert
+```

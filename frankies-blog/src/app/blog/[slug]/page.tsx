@@ -17,7 +17,9 @@ import { CircularReadingProgress } from "@/components/ui/reading-progress";
 import { CommentsFallback } from "@/components/ui/comments";
 import { BookmarkButton } from "@/components/ui/bookmark-system";
 import { ReadingAnalytics } from "@/components/ui/analytics-tracker";
-import { ContentUpgrade, contentUpgrades } from "@/components/ui/content-upgrades";
+import dynamic from 'next/dynamic';
+const ContentUpgrade = dynamic(() => import('@/components/ui/content-upgrades').then(mod => mod.ContentUpgrade), { ssr: false });
+import { contentUpgrades } from "@/data/contentUpgrades";
 import { generatePageMetadata as generatePageSeoMetadata } from '@/lib/seo';
 import { siteMetadata } from '@/lib/siteMetadata';
 import { Metadata } from 'next';
@@ -64,9 +66,9 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   // Find relevant content upgrade based on post tags/category
-  const relevantUpgrade = contentUpgrades.find(upgrade => 
-    upgrade.tags.some(tag => post.tags.includes(tag)) ||
-    upgrade.title.toLowerCase().includes(post.category.toLowerCase())
+  const relevantUpgrade = contentUpgrades.find(upgrade =>
+    (post.tags?.length && upgrade.tags.some(tag => post.tags?.includes(tag))) ||
+    (post.category && upgrade.title.toLowerCase().includes(post.category.toLowerCase()))
   ) || contentUpgrades[0]; // Fallback to first upgrade
 
   return (

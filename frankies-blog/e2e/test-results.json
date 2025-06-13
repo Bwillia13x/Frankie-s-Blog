@@ -1,0 +1,1584 @@
+{
+  "config": {
+    "configFile": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/playwright.config.ts",
+    "rootDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./e2e/reports"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./e2e/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.0",
+    "workers": 4,
+    "webServer": {
+      "command": "pnpm run build && pnpm run start",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "blog.spec.ts",
+      "file": "blog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Blog Page",
+          "file": "blog.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "loads blog list page",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 9968,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:12:36",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                          "column": 36,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[90m// Ensure at least one article is visible\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m articles \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'article'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m expect(articles\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'displays blog post metadata'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 36,
+                            "line": 12
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[90m// Ensure at least one article is visible\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m articles \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'article'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m expect(articles\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'displays blog post metadata'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:12:36\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:41.619Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                        "column": 36,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-6816c5905d40bfd36efe",
+              "file": "blog.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "displays blog post metadata",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 9700,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:24:33",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                          "column": 33,
+                          "line": 24
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m     \u001b[90m// Optionally check for at least one publish date element\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[36mconst\u001b[39m dates \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'time'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(dates\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   test(\u001b[32m'can navigate to individual blog post'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 33,
+                            "line": 24
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m     \u001b[90m// Optionally check for at least one publish date element\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[36mconst\u001b[39m dates \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'time'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(dates\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   test(\u001b[32m'can navigate to individual blog post'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:24:33\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:41.640Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                        "column": 33,
+                        "line": 24
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-0058abbccb704b3922f1",
+              "file": "blog.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "can navigate to individual blog post",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 32831,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 16,
+                            "line": 35
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('article').first().getByRole('link').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 34 |\u001b[39m       page\u001b[33m.\u001b[39mwaitForNavigation()\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m       postLink\u001b[33m.\u001b[39mclick()\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     ])\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \n \u001b[90m 38 |\u001b[39m     \u001b[90m// Should be on individual blog post page\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:35:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:41.596Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-can-navigate-to-individual-blog-post-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-can-navigate-to-individual-blog-post-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-can-navigate-to-individual-blog-post-chromium/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-f28c3f8f8394b1f49998",
+              "file": "blog.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "search functionality works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5148,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:41.626Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-6b868e595afc86095f9f",
+              "file": "blog.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "category filtering works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1616,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:47.613Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-843951ec3bc388d76e27",
+              "file": "blog.spec.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "loads blog list page",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 7497,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:12:36",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                          "column": 36,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[90m// Ensure at least one article is visible\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m articles \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'article'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m expect(articles\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'displays blog post metadata'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 36,
+                            "line": 12
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('article').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('article').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[90m// Ensure at least one article is visible\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m articles \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'article'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m expect(articles\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'displays blog post metadata'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:12:36\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:56.967Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-loads-blog-list-page-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                        "column": 36,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-5c4458c3c236ae20e7c9",
+              "file": "blog.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "displays blog post metadata",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 8604,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:24:33",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                          "column": 33,
+                          "line": 24
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m     \u001b[90m// Optionally check for at least one publish date element\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[36mconst\u001b[39m dates \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'time'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(dates\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   test(\u001b[32m'can navigate to individual blog post'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 33,
+                            "line": 24
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('time').first()\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('time').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m     \u001b[90m// Optionally check for at least one publish date element\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[36mconst\u001b[39m dates \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'time'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(dates\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   test(\u001b[32m'can navigate to individual blog post'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:24:33\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:59.264Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-displays-blog-post-metadata-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                        "column": 33,
+                        "line": 24
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-ec16e17474a656d832e3",
+              "file": "blog.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "can navigate to individual blog post",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "interrupted",
+                      "duration": 21639,
+                      "error": {
+                        "message": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for locator('article').first().getByRole('link').first()\u001b[22m\n",
+                        "stack": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for locator('article').first().getByRole('link').first()\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:35:16",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                          "column": 16,
+                          "line": 35
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 34 |\u001b[39m       page\u001b[33m.\u001b[39mwaitForNavigation()\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m       postLink\u001b[33m.\u001b[39mclick()\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     ])\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \n \u001b[90m 38 |\u001b[39m     \u001b[90m// Should be on individual blog post page\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                            "column": 16,
+                            "line": 35
+                          },
+                          "message": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for locator('article').first().getByRole('link').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 34 |\u001b[39m       page\u001b[33m.\u001b[39mwaitForNavigation()\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m       postLink\u001b[33m.\u001b[39mclick()\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     ])\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \n \u001b[90m 38 |\u001b[39m     \u001b[90m// Should be on individual blog post page\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts:35:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:04.605Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-can-navigate-to-individual-blog-post-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/blog-Blog-Page-can-navigate-to-individual-blog-post-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/blog.spec.ts",
+                        "column": 16,
+                        "line": 35
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-f164d44af1e594b7b259",
+              "file": "blog.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "search functionality works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2978,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:05.925Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-d8a54b81ba832cbeb623",
+              "file": "blog.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "category filtering works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2107,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:09.873Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-82d7b208626eefffaa48",
+              "file": "blog.spec.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "loads blog list page",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 8,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:19.403Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-346e4ff3d01f8b9e8463",
+              "file": "blog.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "displays blog post metadata",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 9,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:20.874Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-361de867a717e46b2dbc",
+              "file": "blog.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "can navigate to individual blog post",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 8,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:22.044Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-17d4ba2713eac7bbde79",
+              "file": "blog.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "search functionality works",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 9,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:22.400Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-d70303c0362d3847c7d5",
+              "file": "blog.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "category filtering works",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 8,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:23.533Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a378e5ce917615b4b643-b3be0fd8981de116c309",
+              "file": "blog.spec.ts",
+              "line": 61,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "homepage.spec.ts",
+      "file": "homepage.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Homepage",
+          "file": "homepage.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "loads and displays main elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 6503,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:11:48",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 48,
+                          "line": 11
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  9 |\u001b[39m     \n \u001b[90m 10 |\u001b[39m     \u001b[90m// Check for navigation elements\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m     \n \u001b[90m 13 |\u001b[39m     \u001b[90m// Check for footer\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'footer'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 48,
+                            "line": 11
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m     \n \u001b[90m 10 |\u001b[39m     \u001b[90m// Check for navigation elements\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m     \n \u001b[90m 13 |\u001b[39m     \u001b[90m// Check for footer\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'footer'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:11:48\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:49.242Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 48,
+                        "line": 11
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-55d488ab77ab30e7a9c1",
+              "file": "homepage.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "has working navigation links",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 1595,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:21:53",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 53,
+                          "line": 21
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 19 |\u001b[39m     \n \u001b[90m 20 |\u001b[39m     \u001b[90m// Test blog navigation\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/blog/i\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/blog'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m     \n \u001b[90m 24 |\u001b[39m     \u001b[90m// Go back to home\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 53,
+                            "line": 21
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n\n\n\u001b[0m \u001b[90m 19 |\u001b[39m     \n \u001b[90m 20 |\u001b[39m     \u001b[90m// Test blog navigation\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/blog/i\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/blog'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m     \n \u001b[90m 24 |\u001b[39m     \u001b[90m// Go back to home\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:21:53\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:53.163Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 53,
+                        "line": 21
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-314d2e958b60c9449a03",
+              "file": "homepage.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "is responsive on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8524,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:40:48",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 48,
+                          "line": 40
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Check that navigation works on mobile\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   test(\u001b[32m'has proper SEO elements'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 48,
+                            "line": 40
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n\n\u001b[0m \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Check that navigation works on mobile\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   test(\u001b[32m'has proper SEO elements'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:40:48\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:53.247Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 48,
+                        "line": 40
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-c707fc94d555d3b05cb6",
+              "file": "homepage.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "has proper SEO elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1520,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:56:55.931Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-27bfc176bf3864c6a71a",
+              "file": "homepage.spec.ts",
+              "line": 43,
+              "column": 7
+            },
+            {
+              "title": "loads and displays main elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 7530,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:11:48",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 48,
+                          "line": 11
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  9 |\u001b[39m     \n \u001b[90m 10 |\u001b[39m     \u001b[90m// Check for navigation elements\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m     \n \u001b[90m 13 |\u001b[39m     \u001b[90m// Check for footer\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'footer'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 48,
+                            "line": 11
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m     \n \u001b[90m 10 |\u001b[39m     \u001b[90m// Check for navigation elements\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m     \n \u001b[90m 13 |\u001b[39m     \u001b[90m// Check for footer\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'footer'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:11:48\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:09.263Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-loads-and-displays-main-elements-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 48,
+                        "line": 11
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-7a832938ea4cf5cb0f87",
+              "file": "homepage.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "has working navigation links",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 1403,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:21:53",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 53,
+                          "line": 21
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 19 |\u001b[39m     \n \u001b[90m 20 |\u001b[39m     \u001b[90m// Test blog navigation\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/blog/i\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/blog'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m     \n \u001b[90m 24 |\u001b[39m     \u001b[90m// Go back to home\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 53,
+                            "line": 21
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: /blog/i }) resolved to 2 elements:\n    1) <a href=\"/\">…</a> aka getByRole('link', { name: 'Frankie\\'s Blog' })\n    2) <a href=\"/blog\" class=\"px-8 py-4 border border-[#243947] text-white font-semibold rounded-2xl hover:bg-[#243947]/50 transition-all duration-300 inline-block\">Read My Blog</a> aka getByRole('link', { name: 'Read My Blog' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /blog/i })\u001b[22m\n\n\n\u001b[0m \u001b[90m 19 |\u001b[39m     \n \u001b[90m 20 |\u001b[39m     \u001b[90m// Test blog navigation\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/blog/i\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/blog'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m     \n \u001b[90m 24 |\u001b[39m     \u001b[90m// Go back to home\u001b[39m\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:21:53\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:12.275Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-has-working-navigation-links-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 53,
+                        "line": 21
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-05caba2b89b4ec31827e",
+              "file": "homepage.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "is responsive on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 8173,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:40:48",
+                        "location": {
+                          "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                          "column": 48,
+                          "line": 40
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Check that navigation works on mobile\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   test(\u001b[32m'has proper SEO elements'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                            "column": 48,
+                            "line": 40
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('navigation')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation')\u001b[22m\n\n\n\u001b[0m \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Check that navigation works on mobile\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m   test(\u001b[32m'has proper SEO elements'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts:40:48\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:14.721Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/test-results/homepage-Homepage-is-responsive-on-mobile-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/benjaminwilliams/Frankie-s-Blog-1/frankies-blog/e2e/homepage.spec.ts",
+                        "column": 48,
+                        "line": 40
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-f4fff9ab54f2f1f8b317",
+              "file": "homepage.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "has proper SEO elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1603,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:18.735Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-8403cce2a02d3231b724",
+              "file": "homepage.spec.ts",
+              "line": 43,
+              "column": 7
+            },
+            {
+              "title": "loads and displays main elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 19,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:23.705Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-762f6817debae54a353f",
+              "file": "homepage.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "has working navigation links",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 10,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at /Users/benjaminwilliams/Library/Caches/ms-playwright/webkit-2182/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     pnpm exec playwright install                                        ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:24.390Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-f34a629f243b8a6245bb",
+              "file": "homepage.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "is responsive on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 1,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:25.148Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-e3401b5c8e3a298f4bcd",
+              "file": "homepage.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "has proper SEO elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 3,
+                      "status": "skipped",
+                      "duration": 1,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:57:25.355Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "84e7eb052e8cbae1c9f0-241df4725906498e5576",
+              "file": "homepage.spec.ts",
+              "line": 43,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-13T02:56:39.377Z",
+    "duration": 47116.448000000004,
+    "expected": 6,
+    "skipped": 3,
+    "unexpected": 18,
+    "flaky": 0
+  }
+}
