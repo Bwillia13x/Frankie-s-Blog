@@ -36,8 +36,11 @@ test.describe('Homepage', () => {
     // Check that main content is visible on mobile
     await expect(page.getByRole('main')).toBeVisible();
     
+    // Check that mobile menu button is visible
+    await expect(page.getByLabel('Open Menu')).toBeVisible();
+
     // Check that navigation works on mobile
-    await expect(page.getByRole('navigation')).toBeVisible();
+    // await expect(page.getByRole('navigation')).toBeVisible(); // Main navigation is hidden on mobile
   });
 
   test('has proper SEO elements', async ({ page }) => {

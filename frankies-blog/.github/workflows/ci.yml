@@ -62,6 +62,10 @@ jobs:
       working-directory: ./frankies-blog
       run: pnpm analyze
       
+    - name: Install Playwright Browsers
+      working-directory: ./frankies-blog
+      run: pnpm exec playwright install --with-deps
+
     - name: Run e2e tests
       uses: microsoft/playwright-github-action@v1
       with:
