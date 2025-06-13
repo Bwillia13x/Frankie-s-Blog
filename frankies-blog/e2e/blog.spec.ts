@@ -28,6 +28,7 @@ test.describe('Blog Page', () => {
     await page.goto('/blog');
     
     // Click on first blog post and wait for navigation
+    await page.locator('article').first().waitFor();
     const firstPost = page.locator('article').first();
     const postLink = firstPost.getByRole('link').first();
     await Promise.all([
